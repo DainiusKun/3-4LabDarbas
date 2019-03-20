@@ -2,26 +2,49 @@
 #include <iomanip>
 #include <string>
 using namespace std;
+struct St
+{
+    string Vardas, Pavarde;
+    int *ND, E;
+    double R, M;
+}*s, *temp;
 int main()
 {
-    string Vardas[30], Pavarde[30];
-    int n;
-    float ND[30], E[30], R[30];
+    int n, nd;
+    string VidM[2]={"Galutinis (Vid.)", "Galutinis (Med.)"};
     cout << "Kiek yra studentu Jusu grupeje?" << endl;
     cin >> n;
-    if (n>30) cout << "Jus turite per daug studentu vienai grupei." << endl;
-    else
+    s = new St[n];
+    delete(s);
+    s[n].R={0};
+    cout << "Kiek namu darbu uzdavete?" << endl;
+    cin >> nd;
+    for (int i = 0; i < n; i++)
     {
-        for(int i = 0; i < n; i++)
+        s[i].ND = new int[nd];
+    }
+
+    delete(s -> ND);
+    for(int i = 0; i < n; i++)
         {
             cout << "Irasykite " << i+1 << "-ojo studento varda ir pavarde." << endl;
-            cin >> Vardas[i];
-            cin >> Pavarde[i];
-            cout << "Irasykite " << i+1 << "-ojo studento namu darbu rezultatus." << endl;
-            cin >> ND[i];
+            cin >> s[i].Vardas;
+            cin >> s[i].Pavarde;
+            for(int j = 0; j < nd ; j++)
+            {
+               cout << "Irasykite " << j+1 << "-ojo namu darbu rezultatus." << endl;
+               cin >> s[i].ND[j];
+            }
             cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultatus." << endl;
-            cin >> E[i];
-            R[i]=0.4*ND[i]+0.6*E[i];
+            cin >> s[i].E;
+        }
+        for(int x = 0; x < n; x++)
+        {
+            for(int y = 0; y < nd; y++)
+            {
+                s[x].R=s[x].R+(s[x].ND[y])*0.4;
+            }
+            s[x].R=s[x].R/nd+s[x].E*0.6;
         }
         cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
         cout.fill('-');
@@ -31,9 +54,8 @@ int main()
         cout << "\n";
         for(int j = 0; j < n; j++)
         {
-            cout << left << setw(11)<< Vardas[j] << setw(13) << Pavarde[j] << setw(16) << right << setprecision(2) << fixed << R[j] << endl;
+            cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].R << endl;
         }
-
-    }
     return 0;
 }
+
