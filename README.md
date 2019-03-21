@@ -1,5 +1,5 @@
 # 3-4LabDarbas
-Programa kirta apskaičiuoti studentų vidurkį arba mediana.
+Programa skirta apskaičiuoti studentų vidurkį arba mediana.
 Pirma įrašomas studentų kiekis.
 Antra studentų namų darbų kiekis.
 Trečia studentų vardai ir pavardės.
