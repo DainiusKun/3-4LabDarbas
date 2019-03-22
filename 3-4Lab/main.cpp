@@ -28,10 +28,12 @@ int main()
         cin.ignore(256,'\n');
     }
     s = new St[n];
+    delete(s);
     for (int i = 0; i < n; i++)
     {
        s[i].ND = new double[nd];
     }
+    delete(s-> ND);
     //Pagrindinis skaiciavimas
     for (int i = 0; i < n; i++)
     {
