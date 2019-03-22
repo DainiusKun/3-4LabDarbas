@@ -7,7 +7,7 @@ struct St
     string Vardas, Pavarde;
     int *ND, E;
     double R, M;
-}*s, *temp;
+}*s;
 void burbulas(int Mas[], int n);
 int main()
 {
