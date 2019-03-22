@@ -104,15 +104,15 @@ int main()
             {
                cout << "Irasykite " << j+1 << "-ojo namu darbu rezultatus." << endl;
                cin >> s[i].ND[j];
-                while(!(s[i].ND[j]>0 && s[i].ND[j]<11))
+                while(!(cin >> s[i].ND[j]) || (!(s[i].ND[j]>0 && s[i].ND[j]<11)))
                 {
                 cout << "Teisingai irasykite " << i+1 << "-ojo namu darbu rezultatus." << endl;
-                cin >> s[i].E;
+                cin >> s[i].ND[j];
                 }
             }
             cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultatus." << endl;
             cin >> s[i].E;
-            while(!(s[i].E>0 && s[i].E<11))
+            while(!(cin >> s[i].E)||(!(s[i].E>0 && s[i].E<11)))
             {
                 cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultatus." << endl;
                 cin >> s[i].E;
