@@ -5,4 +5,4 @@ Programa skirta apskaičiuoti studentų vidurkį arba mediana.
 3. Įrašomi studentų vardai ir pavardės.
 4. Įrašomi namų darbų rezultatai.
 5. Įrašomi egzaminų rezultatai.
-Galiausiai programa paklausia ar norite pamatyti mediana, ar vidurkį.
+6. Galiausiai programa paklausia ar norite pamatyti mediana, ar vidurkį.
