@@ -9,14 +9,14 @@ struct St
     int E;
     vector <int> ND;
     double R, M;
-}*s, *temp;
+};
 void burbulas(int Mas[], int n);
 int main()
 {
     int n, nd, f = 0, tik;
     string VidM[2]={"Galutinis (Vid.)", "Galutinis (Med.)"}, VM;
     cout << "Kiek yra studentu Jusu grupeje?" << endl;
-    while(!(cin >> n))
+    while(!(cin >> n) || n <= 0)
     {
         cout << "Neteisingai ivedete studentu skaiciu, bandykite dar karta." << endl;
         cin.clear();
@@ -27,7 +27,7 @@ int main()
     s[n].M={0};
     cout << "Kiek namu darbu uzdavete?" << endl;
 
-    while(!(cin >> nd))
+    while(!(cin >> nd) || nd <= 0)
     {
         cout << "Neteisingai ivedete namu darbu skaiciu, bandykite dar karta." << endl;
         cin.clear();
@@ -92,15 +92,15 @@ int main()
             {
                cout << "Irasykite " << j+1 << "-ojo namu darbu rezultatus." << endl;
                cin >> s[i].ND[j];
-                while(!(s[i].ND[j]>0 && s[i].ND[j]<11))
+                while(!(cin >> s[i].ND[j]) || (!(s[i].ND[j]>0 && s[i].ND[j]<11)))
                 {
                 cout << "Teisingai irasykite " << i+1 << "-ojo namu darbu rezultatus." << endl;
-                cin >> s[i].E;
+                cin >> s[i].ND[j];
                 }
             }
             cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultatus." << endl;
             cin >> s[i].E;
-            while(!(s[i].E>0 && s[i].E<11))
+            while(!(cin >> s[i].E)||(!(s[i].E>0 && s[i].E<11)))
             {
                 cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultatus." << endl;
                 cin >> s[i].E;

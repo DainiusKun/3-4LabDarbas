@@ -5,10 +5,10 @@ using namespace std;
 struct St
 {
     string Vardas, Pavarde;
-    int *ND, E;
+    double *ND, E;
     double R, M;
 }*s;
-void burbulas(int Mas[], int n);
+void burbulas(double Mas[], int n);
 int main()
 {
     int n, nd, f = 0, tik;
@@ -34,7 +34,7 @@ int main()
     }
     for (int i = 0; i < n; i++)
     {
-        s[i].ND = new int[nd];
+        s[i].ND = new double[nd];
     }
     delete(s -> ND);
     for(int i = 0; i < n; i++)
@@ -61,12 +61,14 @@ int main()
                     {
                         cout << "Teisingai irasykite " << i+1 << "-ojo studento varda" << endl;
                         cin >> s[i].Vardas;
+                        f = 0;
                     }
                 }
                 else
                 {
                         cout << "Teisingai irasykite " << i+1 << "-ojo studento varda" << endl;
                         cin >> s[i].Vardas;
+                        f=0;
                 }
             }while(tik!=1);
             tik = 0;
@@ -103,19 +105,19 @@ int main()
             for(int j = 0; j < nd ; j++)
             {
                cout << "Irasykite " << j+1 << "-ojo namu darbu rezultatus." << endl;
-               cin >> s[i].ND[j];
                 while(!(cin >> s[i].ND[j]) || (!(s[i].ND[j]>0 && s[i].ND[j]<11)))
                 {
                 cout << "Teisingai irasykite " << i+1 << "-ojo namu darbu rezultatus." << endl;
-                cin >> s[i].ND[j];
+                cin.clear();
+                cin.ignore(256,'\n');
                 }
             }
             cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultatus." << endl;
-            cin >> s[i].E;
             while(!(cin >> s[i].E)||(!(s[i].E>0 && s[i].E<11)))
             {
                 cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultatus." << endl;
-                cin >> s[i].E;
+                cin.clear();
+                cin.ignore(256,'\n');
             }
 
         }
@@ -189,7 +191,7 @@ int main()
         }
     return 0;
 }
-void burbulas(int Mas[], int n)
+void burbulas(double Mas[], int n)
 {
    for (int i = 0; i < n-1; i++)
 
