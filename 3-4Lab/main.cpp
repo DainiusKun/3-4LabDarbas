@@ -45,23 +45,28 @@ int main()
             //Tikrina ar varde nera skaitmenu ir ar tik viena didzioji raide
             do
             {
-                for(int t = 0; t < sizeof(s[i].Vardas)/sizeof(string); t++)
+                if(s[i].Vardas[0]>='A' && s[i].Vardas[0]<='Z')
                 {
-                    if((s[i].Vardas[t]>='A' && s[i].Vardas[t]<='Z') || !(s[i].Vardas[t]>='0' && s[i].Vardas[t]<='9'))
+                    f++;
+                    for(int t = 0; t < sizeof(s[i].Vardas)/sizeof(string)+1; t++)
                     {
-                        f++;
-                        if(f>1)
+                        if((s[i].Vardas[t]>='a' && s[i].Vardas[t]<='z'))
                         {
-                        t = sizeof(s[i].Vardas)/sizeof(string);
+                            f++;
                         }
-                    }
 
+                    }
+                    if(f==sizeof(s[i].Vardas)/sizeof(string)+1) tik = 1;
+                    else
+                    {
+                        cout << "Teisingai irasykite " << i+1 << "-ojo studento varda" << endl;
+                        cin >> s[i].Vardas;
+                    }
                 }
-                if(f==1) tik = 1;
                 else
                 {
-                    cout << "Teisingai irasykite " << i+1 << "-ojo studento varda" << endl;
-                    cin >> s[i].Vardas;
+                        cout << "Teisingai irasykite " << i+1 << "-ojo studento varda" << endl;
+                        cin >> s[i].Vardas;
                 }
             }while(tik!=1);
             tik = 0;
@@ -69,23 +74,30 @@ int main()
             //Tikrina ar pavardeje yra tik 1 didzioji raide ir ar nera skaimenu
             do
             {
-                for(int t = 0; t < sizeof(s[i].Pavarde)/sizeof(string); t++)
+                if(s[i].Pavarde[0]>='A' && s[i].Pavarde[0]<='Z')
                 {
-                    if((s[i].Pavarde[t]>='A' && s[i].Pavarde[t]<='Z') || !(s[i].Pavarde[t]>='0' && s[i].Pavarde[t]<='9'))
+                    f++;
+                    for(int t = 0; t < sizeof(s[i].Pavarde)/sizeof(string)+1; t++)
                     {
-                        f++;
-                        if(f>1)
+                        if((s[i].Pavarde[t]>='a' && s[i].Pavarde[t]<='z'))
                         {
-                        t = sizeof(s[i].Pavarde)/sizeof(string)+1;
+                            f++;
                         }
-                    }
 
+                    }
+                    if(f==sizeof(s[i].Pavarde)/sizeof(string)+1) tik = 1;
+                    else
+                    {
+                        cout << "Teisingai irasykite " << i+1 << "-ojo studento pavarde" << endl;
+                        cin >> s[i].Pavarde;
+                        f = 0;
+                    }
                 }
-                if(f==1) tik = 1;
                 else
                 {
-                    cout << "Teisingai irasykite " << i+1 << "-ojo studento pavarde" << endl;
-                    cin >> s[i].Pavarde;
+                        cout << "Teisingai irasykite " << i+1 << "-ojo studento varda" << endl;
+                        cin >> s[i].Pavarde;
+                        f = 0;
                 }
             }while(tik!=1);
             for(int j = 0; j < nd ; j++)
