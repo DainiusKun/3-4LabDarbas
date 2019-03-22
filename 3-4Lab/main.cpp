@@ -1,6 +1,6 @@
 #include <iostream>
 #include <iomanip>
-#include <string.h>
+#include <string>
 using namespace std;
 struct St
 {
@@ -11,27 +11,16 @@ struct St
 void burbulas(double Mas[], int n);
 int main()
 {
-    int n, nd, f = 0, tik;
+    int n, nd;
     string VidM[2]={"Galutinis (Vid.)", "Galutinis (Med.)"}, VM;
     cout << "Kiek yra studentu Jusu grupeje?" << endl;
-    while(!(cin >> n))
-    {
-        cout << "Neteisingai ivedete studentu skaiciu, bandykite dar karta." << endl;
-        cin.clear();
-        cin.ignore(256,'\n');
-    }
+    cin >> n;
     s = new St[n];
     delete(s);
     s[n].R={0};
     s[n].M={0};
     cout << "Kiek namu darbu uzdavete?" << endl;
-
-    while(!(cin >> nd))
-    {
-        cout << "Neteisingai ivedete namu darbu skaiciu, bandykite dar karta." << endl;
-        cin.clear();
-        cin.ignore(256,'\n');
-    }
+    cin >> nd;
     for (int i = 0; i < n; i++)
     {
         s[i].ND = new double[nd];
@@ -42,6 +31,7 @@ int main()
             cout << "Irasykite " << i+1 << "-ojo studento varda ir pavarde." << endl;
             cin >> s[i].Vardas;
             cin >> s[i].Pavarde;
+<<<<<<< HEAD
             //Tikrina ar varde nera skaitmenu ir ar tik viena didzioji raide
             do
             {
@@ -120,6 +110,15 @@ int main()
                 cin.ignore(256,'\n');
             }
 
+=======
+            for(int j = 0; j < nd ; j++)
+            {
+               cout << "Irasykite " << j+1 << "-ojo namu darbu rezultatus." << endl;
+               cin >> s[i].ND[j];
+            }
+            cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultatus." << endl;
+            cin >> s[i].E;
+>>>>>>> parent of 6a0affb... 0.1.3V
         }
         //Vidurkio skaièiavimas
         for(int x = 0; x < n; x++)
@@ -158,12 +157,7 @@ int main()
         }
         cout << "Ka noretumete pamatyti, pazymiu vidurki ar mediana?\n";
         cin >> VM;
-        while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
-        {
-            cout << "Vidurki ar mediana?" << endl;
-            cin >> VM;
-        }
-        if(VM=="Vidurki" || VM=="vidurki")
+        if(VM=="Vidurki")
         {
             cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[0];
             cout.fill('-');
@@ -176,7 +170,7 @@ int main()
                 cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].R << endl;
             }
         }
-        if(VM=="Mediana" || VM=="mediana")
+        if(VM=="Mediana")
         {
             cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[1];
             cout.fill('-');
