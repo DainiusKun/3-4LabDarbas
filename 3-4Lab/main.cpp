@@ -95,7 +95,7 @@ int main()
                 }
                 else
                 {
-                        cout << "Teisingai irasykite " << i+1 << "-ojo studento varda" << endl;
+                        cout << "Teisingai irasykite " << i+1 << "-ojo studento pavarde" << endl;
                         cin >> s[i].Pavarde;
                         f = 0;
                 }
