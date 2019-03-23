@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <vector>
 #include <algorithm>
 using namespace std;
 struct St
@@ -8,6 +9,7 @@ struct St
     string Vardas, Pavarde;
     double E, R, M;
     vector <double> ND;
+    void rik();
 }s;
 void burbulas(double Mas[], int n);
 int main()
@@ -98,7 +100,7 @@ int main()
         for(int j = 0; j < nd; j++)
         {
             cout << "Irasykite " << j+1 << "-ojo namu darbu rezultata.\n";
-            while(!(cin >> k)&&)
+            while(!(cin >> k))
                 {
                     cout << "Teisingai irasykite " << j+1 << "-ojo namu darbu rezultatus." << endl;
                     cin.clear();
@@ -107,8 +109,9 @@ int main()
             while(k<0 || k>10)
             {
                 cout << "Teisingai irasykite " << j+1 << "-ojo namu darbu rezultatus." << endl;
-                cin >> k
+                cin >> k;
             }
+            s[i].ND.push_back(k);
         }
         cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultata.\n";
         while(!(cin >> s[i].E))
@@ -128,8 +131,7 @@ int main()
                 s[i].R=s[i].R+(s[i].ND[y])*0.4;
             }
             s[i].R=s[i].R/nd+s[i].E*0.6;
-                    //Rikiavimas
-        burbulas(s -> ND, nd);
+        //Rikiavimas
         if(nd==1)
         {
             s[i].M=(s[i].ND[nd-1]+s[i].E)/2;
@@ -181,10 +183,7 @@ int main()
     }
     return 0;
 }
-void burbulas(double mas[], int n)
+void St::rik()
 {
-   for (int i = 0; i < n-1; i++)
-       for (int j = 0; j < n-i-1; j++)
-           if (mas[j] > mas[j+1])
-              swap(mas[j], mas[j+1]);
+    sort(ND.begin(),ND.end());
 }
