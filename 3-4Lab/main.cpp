@@ -116,7 +116,7 @@ int main()
             }
         }
         cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultata.\n";
-        while(!(cin >> s[i].E)||s[i].E<0 || s[i].E>10)
+        while(!(cin >> s[i].E))
                 {
                 cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultata." << endl;
                 cin.clear();
