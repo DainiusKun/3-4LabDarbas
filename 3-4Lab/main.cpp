@@ -29,59 +29,105 @@ int main()
         cin >> s[i].Vardas;
         cin >> s[i].Pavarde;
         s[i].ND = new double[k];
-        cout << "Irasykite " << i+1 << "-ojo studento namu darbu rezultatus. Irase 0 arba skaiciu >10 baigisis ivedimas.\n";
-        cin >> nd;
-        while(nd>0 && nd<11)
+        cout << "Ar norite atsitiktiniu skaiciu?\n";
+        cin >> VM;
+        if(VM=="Taip" || VM=="taip")
         {
-            s[i].ND[k-1]=nd;
-            temp[i].ND = new double[k];
-            temp[i].ND[k-1]=s[i].ND[k-1];
+            k=rand();
             delete(s-> ND);
-            k++;
+            delete(temp -> ND);
             s[i].ND = new double[k];
-            for(int p = 0; p < k; p++)
+            for(int g = 0; g < k; g++)
             {
-             s[i].ND[p]=temp[i].ND[p];
+                s[i].ND[g] = rand()%10+1;
             }
-            delete(temp-> ND);
-            cin >> nd;
-        }
-        k--;
-        cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultata.\n";
-        while(!(cin >> s[i].E))
-                {
-                cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultata." << endl;
-                cin.clear();
-                cin.ignore(256,'\n');
-                }
-            while(s[i].E<0 || s[i].E>10)
-            {
-                cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultata." << endl;
-                cin >> s[i].E;
-            }
-        //Vidurkio skaiciavimas
+            s[i].E=rand()%10+1;
+            //Vidurkio skaiciavimas
             for(int y = 0; y < k ; y++)
             {
                 s[i].R=s[i].R+(s[i].ND[y]);
             }
             s[i].R=s[i].R/k*0.4+s[i].E*0.6;
-        //Rikiavimas
-        burbulas(s -> ND, k);
-        if(k==1)
-        {
-            s[i].M=(s[i].ND[k-1]+s[i].E)/2;
-        }
-        else
-        {
-            if(k%2==0)
+            //Rikiavimas
+            burbulas(s -> ND, k);
+            //Mediana
+            if(k==1)
             {
-                s[i].M=((s[i].ND[k-2/2-1]+s[i].ND[k-1/2])*0.5+s[i].E)*0.5;
+                s[i].M=s[i].ND[k-1]*0.4+s[i].E*0.6;
             }
             else
             {
-                s[i].M=(s[i].ND[k-1/2-1]+s[i].E)/2;
+                if(k%2==0)
+                {
+                        s[i].M=(s[i].ND[k-2/2-1]+s[i].ND[k-1/2])*0.5*0.4+s[i].E*0.6;
+                }
+                else
+                {
+                    s[i].M=(s[i].ND[k-1/2-1])*0.4+s[i].E*0.6;
+                }
             }
+
         }
+        else
+        {
+            if(VM=="Ne" || VM=="ne")
+            {
+                cout << "Irasykite " << i+1 << "-ojo studento namu darbu rezultatus. Irase 0 arba skaiciu >10 baigisis ivedimas.\n";
+                cin >> nd;
+                while(nd>0 && nd<11)
+                {
+                s[i].ND[k-1]=nd;
+                temp[i].ND = new double[k];
+                temp[i].ND[k-1]=s[i].ND[k-1];
+                delete(s-> ND);
+                k++;
+                s[i].ND = new double[k];
+                for(int p = 0; p < k; p++)
+                {
+                 s[i].ND[p]=temp[i].ND[p];
+                }
+                delete(temp-> ND);
+                cin >> nd;
+                }
+                k--;
+                cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultata.\n";
+                while(!(cin >> s[i].E))
+                {
+                    cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultata." << endl;
+                    cin.clear();
+                    cin.ignore(256,'\n');
+                }
+                while(s[i].E<0 || s[i].E>10)
+                {
+                    cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultata." << endl;
+                    cin >> s[i].E;
+                }
+                //Vidurkio skaiciavimas
+                for(int y = 0; y < k ; y++)
+                {
+                    s[i].R=s[i].R+(s[i].ND[y]);
+                }
+                    s[i].R=s[i].R/k*0.4+s[i].E*0.6;
+                //Rikiavimas
+                burbulas(s -> ND, k);
+                //Mediana
+                if(k==1)
+                {
+                    s[i].M=s[i].ND[k-1]*0.4+s[i].E*0.6;
+                }
+                else
+                {
+                    if(k%2==0)
+                    {
+                        s[i].M=(s[i].ND[k-2/2-1]+s[i].ND[k-1/2])*0.5*0.4+s[i].E*0.6;
+                    }
+                    else
+                    {
+                        s[i].M=(s[i].ND[k-1/2-1])*0.4+s[i].E*0.6;
+                    }
+                }
+                }
+            }
     }
     cout << "Ka noretumete pamatyti, pazymiu vidurki ar mediana?\n";
     cin >> VM;
@@ -92,6 +138,7 @@ int main()
     }
     if(VM=="Vidurki" || VM=="vidurki")
     {
+
         cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[0];
         cout.fill('-');
         cout.width(41);

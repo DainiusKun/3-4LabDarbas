@@ -11,7 +11,6 @@ struct St
     vector <double> ND;
     void rik();
 }s;
-void burbulas(double Mas[], int n);
 int main()
 {
     int n, nd=0, k;
@@ -30,6 +29,42 @@ int main()
         cout << "Irasykite " << i+1 << "-ojo studento varda ir pavarde.\n";
         cin >> s[i].Vardas;
         cin >> s[i].Pavarde;
+        cout << "Ar norite atsitiktiniu skaiciu?\n";
+        cin >> VM;
+        if(VM=="Taip" || VM=="taip")
+        {
+            k=rand();
+            for(int g = 0; g < k; g++)
+            {
+                s[i].ND.push_back(rand()%10+1);
+            }
+            s[i].E=rand()%10+1;
+            //Vidurkio skaiciavimas
+            for(int y = 0; y < k ; y++)
+            {
+                s[i].R=s[i].R+(s[i].ND[y]);
+            }
+            s[i].R=s[i].R/k*0.4+s[i].E*0.6;
+            //Mediana
+            if(k==1)
+            {
+                s[i].M=s[i].ND[k-1]*0.4+s[i].E*0.6;
+            }
+            else
+            {
+                if(k%2==0)
+                {
+                        s[i].M=(s[i].ND[k-2/2-1]+s[i].ND[k-1/2])*0.5*0.4+s[i].E*0.6;
+                }
+                else
+                {
+                    s[i].M=(s[i].ND[k-1/2-1])*0.4+s[i].E*0.6;
+                }
+            }
+
+        }
+        else
+        {
         cout << "Irasykite " << i+1 << "-ojo studento namu darbu rezultatus. Irase 0 arba skaiciu >10 baigisis ivedimas.\n";
         cin >> k;
         while(k!=0)
@@ -56,20 +91,22 @@ int main()
                 s[i].R=s[i].R+(s[i].ND[y]);
             }
             s[i].R=s[i].R/nd*0.4+s[i].E*0.6;
-        if(nd==1)
+        //Mediana
+        if(k==1)
         {
-            s[i].M=(s[i].ND[nd-1]+s[i].E)/2;
+            s[i].M=s[i].ND[k-1];
         }
         else
         {
-            if(nd%2==0)
+            if(k%2==0)
             {
-                s[i].M=((s[i].ND[nd/2-1]+s[i].ND[nd/2])*0.5+s[i].E)*0.5;
+                s[i].M=(s[i].ND[k-2/2-1]+s[i].ND[k-1/2])*0.5;
             }
             else
             {
-                s[i].M=(s[i].ND[nd/2-1]+s[i].E)/2;
+                s[i].M=(s[i].ND[k-1/2-1]);
             }
+        }
         }
     }
     cout << "Ka noretumete pamatyti, pazymiu vidurki ar mediana?\n";
