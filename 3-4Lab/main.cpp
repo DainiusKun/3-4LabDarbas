@@ -1,17 +1,17 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <algorithm>
 using namespace std;
 struct St
 {
     string Vardas, Pavarde;
     double *ND, E, R, M;
-}*s;
+}*s, *temp;
 void burbulas(double Mas[], int n);
 int main()
 {
-    int n, nd, f = 0, tik;
+    int n, k = 1;
+    double nd;
     string VidM[2]={"Galutinis (Vid.)", "Galutinis (Med.)"}, VM;
     cout << "Kiek yra studentu Jusu grupeje?\n";
     while(!(cin >> n))
@@ -20,101 +20,33 @@ int main()
         cin.clear();
         cin.ignore(256,'\n');
     }
-    cout << "Kiek namu darbu uzdavete?\n";
-    while(!(cin >> nd))
-    {
-        cout << "Neteisingai ivedete namu darbu skaiciu, bandykite dar karta." << endl;
-        cin.clear();
-        cin.ignore(256,'\n');
-    }
     s = new St[n];
-    delete(s);
-    for (int i = 0; i < n; i++)
-    {
-       s[i].ND = new double[nd];
-    }
-    delete(s-> ND);
+    temp = new St[n];
     //Pagrindinis skaiciavimas
     for (int i = 0; i < n; i++)
     {
         cout << "Irasykite " << i+1 << "-ojo studento varda ir pavarde.\n";
         cin >> s[i].Vardas;
         cin >> s[i].Pavarde;
-        //Tikrina ar varde nera skaitmenu ir ar tik viena didzioji raide
-            do
-            {
-                if(s[i].Vardas[0]>='A' && s[i].Vardas[0]<='Z')
-                {
-                    f++;
-                    for(int t = 0; t < sizeof(s[i].Vardas)/sizeof(string)+1; t++)
-                    {
-                        if((s[i].Vardas[t]>='a' && s[i].Vardas[t]<='z'))
-                        {
-                            f++;
-                        }
-
-                    }
-                    if(f==sizeof(s[i].Vardas)/sizeof(string)+1) tik = 1;
-                    else
-                    {
-                        cout << "Teisingai irasykite " << i+1 << "-ojo studento varda" << endl;
-                        cin >> s[i].Vardas;
-                        f = 0;
-                    }
-                }
-                else
-                {
-                        cout << "Teisingai irasykite " << i+1 << "-ojo studento varda" << endl;
-                        cin >> s[i].Vardas;
-                        f=0;
-                }
-            }while(tik!=1);
-            tik = 0;
-            f = 0;
-            //Tikrina ar pavardeje yra tik 1 didzioji raide ir ar nera skaimenu
-            do
-            {
-                if(s[i].Pavarde[0]>='A' && s[i].Pavarde[0]<='Z')
-                {
-                    f++;
-                    for(int t = 0; t < sizeof(s[i].Pavarde)/sizeof(string)+1; t++)
-                    {
-                        if((s[i].Pavarde[t]>='a' && s[i].Pavarde[t]<='z'))
-                        {
-                            f++;
-                        }
-
-                    }
-                    if(f==sizeof(s[i].Pavarde)/sizeof(string)+1) tik = 1;
-                    else
-                    {
-                        cout << "Teisingai irasykite " << i+1 << "-ojo studento pavarde" << endl;
-                        cin >> s[i].Pavarde;
-                        f = 0;
-                    }
-                }
-                else
-                {
-                        cout << "Teisingai irasykite " << i+1 << "-ojo studento pavarde" << endl;
-                        cin >> s[i].Pavarde;
-                        f = 0;
-                }
-            }while(tik!=1);
-        for(int j = 0; j < nd; j++)
+        s[i].ND = new double[k];
+        cout << "Irasykite " << i+1 << "-ojo studento namu darbu rezultatus. Irase 0 arba skaiciu >10 baigisis ivedimas.\n";
+        cin >> nd;
+        while(nd>0 && nd<11)
         {
-            cout << "Irasykite " << j+1 << "-ojo namu darbu rezultata.\n";
-            while(!(cin >> s[i].ND[j]))
-                {
-                cout << "Teisingai irasykite " << j+1 << "-ojo namu darbu rezultatus." << endl;
-                cin.clear();
-                cin.ignore(256,'\n');
-                }
-            while(s[i].ND[j]<0 || s[i].ND[j]>10)
+            s[i].ND[k-1]=nd;
+            temp[i].ND = new double[k];
+            temp[i].ND[k-1]=s[i].ND[k-1];
+            delete(s-> ND);
+            k++;
+            s[i].ND = new double[k];
+            for(int p = 0; p < k; p++)
             {
-                cout << "Teisingai irasykite " << j+1 << "-ojo namu darbu rezultatus." << endl;
-                cin >> s[i].ND[j];
+             s[i].ND[p]=temp[i].ND[p];
             }
+            delete(temp-> ND);
+            cin >> nd;
         }
+        k--;
         cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultata.\n";
         while(!(cin >> s[i].E))
                 {
@@ -128,26 +60,26 @@ int main()
                 cin >> s[i].E;
             }
         //Vidurkio skaiciavimas
-            for(int y = 0; y < nd; y++)
+            for(int y = 0; y < k ; y++)
             {
-                s[i].R=s[i].R+(s[i].ND[y])*0.4;
+                s[i].R=s[i].R+(s[i].ND[y]);
             }
-            s[i].R=s[i].R/nd+s[i].E*0.6;
-                    //Rikiavimas
-        burbulas(s -> ND, nd);
-        if(nd==1)
+            s[i].R=s[i].R/k*0.4+s[i].E*0.6;
+        //Rikiavimas
+        burbulas(s -> ND, k);
+        if(k==1)
         {
-            s[i].M=(s[i].ND[nd-1]+s[i].E)/2;
+            s[i].M=(s[i].ND[k-1]+s[i].E)/2;
         }
         else
         {
-            if(nd%2==0)
+            if(k%2==0)
             {
-                s[i].M=((s[i].ND[nd/2-1]+s[i].ND[nd/2])*0.5+s[i].E)*0.5;
+                s[i].M=((s[i].ND[k-2/2-1]+s[i].ND[k-1/2])*0.5+s[i].E)*0.5;
             }
             else
             {
-                s[i].M=(s[i].ND[nd/2-1]+s[i].E)/2;
+                s[i].M=(s[i].ND[k-1/2-1]+s[i].E)/2;
             }
         }
     }
@@ -184,6 +116,7 @@ int main()
             cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].M << endl;
         }
     }
+    delete(s);
     return 0;
 }
 void burbulas(double mas[], int n)
