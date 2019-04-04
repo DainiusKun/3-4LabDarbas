@@ -29,7 +29,7 @@ int main()
         cout << "Irasykite " << i+1 << "-ojo studento varda ir pavarde.\n";
         cin >> s[i].Vardas;
         cin >> s[i].Pavarde;
-        cout << "Ar norite atsitiktiniu skaiciu?\n";
+        cout << "Ar norite atsitiktiniu rezultatu?\n";
         cin >> VM;
         if(VM=="Taip" || VM=="taip")
         {
@@ -65,7 +65,7 @@ int main()
         }
         else
         {
-        cout << "Irasykite " << i+1 << "-ojo studento namu darbu rezultatus. Irase 0 arba skaiciu >10 baigisis ivedimas.\n";
+        cout << "Irasykite " << i+1 << "-ojo studento namu darbu rezultatus. Irase 0 arba skaiciu >10 baigsis ivedimas.\n";
         cin >> k;
         while(k!=0)
         {
