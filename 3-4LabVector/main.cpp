@@ -109,7 +109,7 @@ int main()
         }
         }
     }
-    cout << "Ka noretumete pamatyti, pazymiu vidurki ar mediana?\n";
+    cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
     while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
     {
