@@ -2,7 +2,7 @@
 #include "struct.h"
 int main()
 {
-    int n, sk = 0, k = 0;
+    int n, k = 0;
     double d;
     string VidM[2]={"Galutinis (Vid.)", "Galutinis (Med.)"}, VM;
     cout << "Ar norite skaityti duomenis is failo, ar norite irasyti ranka?\n";
@@ -14,40 +14,220 @@ int main()
     }
     if(VM=="Failo" || VM == "failo")
     {
-        vector<St> s(2);
-        int t = 0;
-        string word = "";
-        const char FL[] = "kursiokai.txt";
-        ifstream fd(FL);
-        vector<string> vec;
-        stringstream ss;
-        getline(fd, VM);
-        while(getline(fd, VM, '\n'))
+        cout << "Kiek studentu grupeje? 2, 10, 100, 1000, 10000 ar 100000?\n";
+        cin >> n;
+        vector<St> s(n);
+        const char FL1[] = "kursiokai.txt";
+        const char FL2[] = "10.txt";
+        const char FL3[] = "100.txt";
+        const char FL4[] = "1000.txt";
+        const char FL5[] = "10000.txt";
+        const char FL6[] = "100000.txt";
+        if(n==2)
         {
-            ss.str(VM);
-            while(ss >> word)
+            ifstream fd(FL1);
+            int t = 0;
+            string word = "";
+            vector<string> vec;
+            stringstream ss;
+            getline(fd, VM);
+            while(getline(fd, VM, '\n'))
             {
-                vec.push_back(word);
-            }
-            s[t].Vardas=vec[k];
-            k++;
-            s[t].Pavarde=vec[k];
-            k++;
-            for(int j = 0; j < 5; j++)
-            {
-                d=stod(vec[k]);
-                s[t].ND.push_back(d);
+                ss.str(VM);
+                while(ss >> word)
+                {
+                    vec.push_back(word);
+                }
+                s[t].Vardas=vec[k];
                 k++;
+                s[t].Pavarde=vec[k];
+                k++;
+                for(int j = 0; j < 5; j++)
+                {
+                    d=stod(vec[k]);
+                    s[t].ND.push_back(d);
+                    k++;
+                }
+                d=stod(vec[k]);
+                s[t].E=d;
+                t++;
+                k=0;
+                vec.clear();
+                ss.clear();
             }
-            d=stod(vec[k]);
-            s[t].E=d;
-            t++;
-            k=0;
-            vec.clear();
-            ss.clear();
+                fd.close();
         }
-        fd.close();
-        for (int x = 0; x < 2; x++)
+        if(n==10)
+        {
+            ifstream fd(FL2);
+            int t = 0;
+            string word = "";
+            vector<string> vec;
+            stringstream ss;
+            getline(fd, VM);
+            while(getline(fd, VM, '\n'))
+            {
+                ss.str(VM);
+                while(ss >> word)
+                {
+                    vec.push_back(word);
+                }
+                s[t].Vardas=vec[k];
+                k++;
+                s[t].Pavarde=vec[k];
+                k++;
+                for(int j = 0; j < 5; j++)
+                {
+                    d=stod(vec[k]);
+                    s[t].ND.push_back(d);
+                    k++;
+                }
+                d=stod(vec[k]);
+                s[t].E=d;
+                t++;
+                k=0;
+                vec.clear();
+                ss.clear();
+            }
+                fd.close();
+        }
+        if(n==100)
+        {
+            ifstream fd(FL3);
+            int t = 0;
+            string word = "";
+            vector<string> vec;
+            stringstream ss;
+            getline(fd, VM);
+            while(getline(fd, VM, '\n'))
+            {
+                ss.str(VM);
+                while(ss >> word)
+                {
+                    vec.push_back(word);
+                }
+                s[t].Vardas=vec[k];
+                k++;
+                s[t].Pavarde=vec[k];
+                k++;
+                for(int j = 0; j < 5; j++)
+                {
+                    d=stod(vec[k]);
+                    s[t].ND.push_back(d);
+                    k++;
+                }
+                d=stod(vec[k]);
+                s[t].E=d;
+                t++;
+                k=0;
+                vec.clear();
+                ss.clear();
+            }
+                fd.close();
+        }
+        if(n==1000)
+        {
+            ifstream fd(FL4);
+            int t = 0;
+            string word = "";
+            vector<string> vec;
+            stringstream ss;
+            getline(fd, VM);
+            while(getline(fd, VM, '\n'))
+            {
+                ss.str(VM);
+                while(ss >> word)
+                {
+                    vec.push_back(word);
+                }
+                s[t].Vardas=vec[k];
+                k++;
+                s[t].Pavarde=vec[k];
+                k++;
+                for(int j = 0; j < 5; j++)
+                {
+                    d=stod(vec[k]);
+                    s[t].ND.push_back(d);
+                    k++;
+                }
+                d=stod(vec[k]);
+                s[t].E=d;
+                t++;
+                k=0;
+                vec.clear();
+                ss.clear();
+            }
+                fd.close();
+        }
+        if(n==10000)
+        {
+            ifstream fd(FL5);
+            int t = 0;
+            string word = "";
+            vector<string> vec;
+            stringstream ss;
+            getline(fd, VM);
+            while(getline(fd, VM, '\n'))
+            {
+                ss.str(VM);
+                while(ss >> word)
+                {
+                    vec.push_back(word);
+                }
+                s[t].Vardas=vec[k];
+                k++;
+                s[t].Pavarde=vec[k];
+                k++;
+                for(int j = 0; j < 5; j++)
+                {
+                    d=stod(vec[k]);
+                    s[t].ND.push_back(d);
+                    k++;
+                }
+                d=stod(vec[k]);
+                s[t].E=d;
+                t++;
+                k=0;
+                vec.clear();
+                ss.clear();
+            }
+                fd.close();
+        }
+        if(n==100000)
+        {
+            ifstream fd(FL6);
+            int t = 0;
+            string word = "";
+            vector<string> vec;
+            stringstream ss;
+            getline(fd, VM);
+            while(getline(fd, VM, '\n'))
+            {
+                ss.str(VM);
+                while(ss >> word)
+                {
+                    vec.push_back(word);
+                }
+                s[t].Vardas=vec[k];
+                k++;
+                s[t].Pavarde=vec[k];
+                k++;
+                for(int j = 0; j < 5; j++)
+                {
+                    d=stod(vec[k]);
+                    s[t].ND.push_back(d);
+                    k++;
+                }
+                d=stod(vec[k]);
+                s[t].E=d;
+                t++;
+                k=0;
+                vec.clear();
+                ss.clear();
+            }
+                fd.close();
+        }
+        for (int x = 0; x < n; x++)
         {
 //////////////////////////Vidurkio skaiciavimas
             for(int y = 0; y < s[x].ND.size() ; y++)
@@ -73,9 +253,9 @@ int main()
             }
 //////////////Eilutes pabaiga
         }
-            for (int i = 0; i <2-1; i++)
+            for (int i = 0; i <n-1; i++)
         {
-            for (int j=i+1; j < 2; j++)
+            for (int j=i+1; j < n; j++)
             {
                 if(s[j].Vardas < s[i].Vardas) swap(s[j], s[i]);
             }
@@ -95,7 +275,7 @@ int main()
             cout << "\n";
             cout.fill(' ');
             cout << "\n";
-            for(int j = 0; j < 2; j++)
+            for(int j = 0; j < n; j++)
             {
                 cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].R << endl;
             }
@@ -108,7 +288,7 @@ int main()
             cout << "\n";
             cout.fill(' ');
             cout << "\n";
-            for(int j = 0; j < 2; j++)
+            for(int j = 0; j < n; j++)
             {
                 cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].M << endl;
             }
