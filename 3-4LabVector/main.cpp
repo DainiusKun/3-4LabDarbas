@@ -17,10 +17,14 @@ int main()
 {
     int n, sk = 0, k = 0;
     double d;
-    vector <St> s;
     string VidM[2]={"Galutinis (Vid.)", "Galutinis (Med.)"}, VM;
     cout << "Ar norite skaityti duomenis is failo, ar norite irasyti ranka?\n";
     cin >> VM;
+    while(!(VM=="Failo" || VM=="failo" || VM=="Ranka" || VM=="ranka"))
+    {
+                cout << "Failo ar ranka?" << endl;
+                cin >> VM;
+    }
     if(VM=="Failo" || VM == "failo")
     {
         vector<St> s(2);
@@ -39,20 +43,16 @@ int main()
                 vec.push_back(word);
             }
             s[t].Vardas=vec[k];
-            cout << vec[k] <<endl;
             k++;
             s[t].Pavarde=vec[k];
-            cout << vec[k] <<endl;
             k++;
             for(int j = 0; j < 5; j++)
             {
                 d=stod(vec[k]);
-                cout << d <<endl;
                 s[t].ND.push_back(d);
                 k++;
             }
             d=stod(vec[k]);
-            cout << d <<endl;
             s[t].E=d;
             t++;
             k=0;
@@ -84,9 +84,16 @@ int main()
                     s[x].M=(s[x].ND[s[x].ND.size()-1/2-1]);
                 }
             }
-//////////////////////////Eilutes pabaiga
+//////////////Eilutes pabaiga
         }
-        cout << "Ka noretumete pamatyti, pazymiu vidurki ar mediana?\n";
+            for (int i = 0; i <2-1; i++)
+        {
+            for (int j=i+1; j < 2; j++)
+            {
+                if(s[j].Vardas < s[i].Vardas) swap(s[j], s[i]);
+            }
+        }
+        cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
         cin >> VM;
         while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
         {
@@ -138,8 +145,13 @@ int main()
                 cout << "Irasykite " << i+1 << "-ojo studento varda ir pavarde.\n";
                 cin >> s[i].Vardas;
                 cin >> s[i].Pavarde;
-                cout << "Ar norite atsitiktiniu skaiciu?\n";
+                cout << "Ar norite atsitiktiniu rezultatu?\n";
                 cin >> VM;
+                while(!(VM=="Taip" || VM=="taip" || VM=="Ne" || VM=="ne"))
+                {
+                cout << "Taip ar ne?" << endl;
+                cin >> VM;
+                }
                 if(VM=="Taip" || VM=="taip")
                 {
                     k=rand();
@@ -149,6 +161,11 @@ int main()
                     }
                     s[i].E=rand()%10+1;
                     //Vidurkio skaiciavimas
+                    for(int y = 0; y < s[i].ND.size() ; y++)
+                    {
+                        s[i].R=s[i].R+(s[i].ND[y]);
+                    }
+                    s[i].R=s[i].R/s[i].ND.size()*0.4+s[i].E*0.6;
                     //Mediana
                     if(k==1)
                     {
@@ -216,7 +233,14 @@ int main()
                     }
                 }
             }
-            cout << "Ka noretumete pamatyti, pazymiu vidurki ar mediana?\n";
+            for (int i = 0; i <n-1; i++)
+            {
+                for (int j=i+1; j < n; j++)
+                {
+                    if(s[j].Vardas < s[i].Vardas) swap(s[j], s[i]);
+                }
+            }
+            cout << "Ka noretumete pamatyti, rezultatus pagal pazymiu vidurki ar mediana?\n";
             cin >> VM;
             while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
             {
@@ -256,12 +280,4 @@ int main()
 void St::rik()
 {
     sort(ND.begin(),ND.end());
-}
-void St::vidurkis()
-{
-    for(int y = 0; y < ND.size() ; y++)
-    {
-        R=R+(ND[y]);
-    }
-    R=R/ND.size()*0.4+E*0.6;
 }
