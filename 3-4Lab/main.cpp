@@ -29,7 +29,7 @@ int main()
         cin >> s[i].Vardas;
         cin >> s[i].Pavarde;
         s[i].ND = new double[k];
-        cout << "Ar norite atsitiktiniu skaiciu?\n";
+        cout << "Ar norite atsitiktiniu rezultatu?\n";
         cin >> VM;
         if(VM=="Taip" || VM=="taip")
         {
@@ -72,7 +72,7 @@ int main()
         {
             if(VM=="Ne" || VM=="ne")
             {
-                cout << "Irasykite " << i+1 << "-ojo studento namu darbu rezultatus. Irase 0 arba skaiciu >10 baigisis ivedimas.\n";
+                cout << "Irasykite " << i+1 << "-ojo studento namu darbu rezultatus. Irase 0 arba skaiciu >10 baigsis ivedimas.\n";
                 cin >> nd;
                 while(nd>0 && nd<11)
                 {
