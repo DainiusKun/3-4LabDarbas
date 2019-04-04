@@ -2,7 +2,7 @@
 #include "struct.h"
 int main()
 {
-    int n, sk = 0, k = 0;
+    int n, k = 0;
     double d;
     string VidM[2]={"Galutinis (Vid.)", "Galutinis (Med.)"}, VM;
     cout << "Ar norite skaityti duomenis is failo, ar norite irasyti ranka?\n";
