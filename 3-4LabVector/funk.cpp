@@ -1,6 +1,6 @@
 #include "funk.h"
 #include "struct.h"
-int main()
+void menu()
 {
     int n, sk = 0, k = 0;
     double d;
@@ -262,5 +262,4 @@ int main()
             }
         }
     }
-    return 0;
 }
