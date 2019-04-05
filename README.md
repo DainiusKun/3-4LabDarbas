@@ -2,7 +2,7 @@
 ## Šioje versijoje naudojami vektoriai.
 ### Programa skirta apskaičiuoti studentų vidurkį arba mediana.
 Programa naudoja nuskaitymą iš failų.
->Jeigu norite nuskaityti iš failo, visi duomenys imami iš failo "Kursiokai.txt".
+>Jeigu norite nuskaityti iš failo, visi duomenys imami iš failo "Kursiokai.txt". Kitu atveju vykdomi tolimesni žingsniai.
 1. Programa paklausia Jūsų koks studentų kiekis.
 2. Įrašomi studentų vardai ir pavardės.
 * 3.1 Programa paklausia ar norite atsitiktinių rezultatų, ar ne;
