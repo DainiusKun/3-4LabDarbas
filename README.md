@@ -12,4 +12,4 @@
 5. Programa apskaičiuoja rezultatą pagal medianą ir rezultatą pagal vidurki.
 > Mediana paskaičiuojama su bubblesort funkcija.
 6. Galiausiai programa paklausia ar norite pamatyti mediana, ar vidurkį.
-[Grįžti į pagrindinį](https://github.com/DainiusKun/3-4LabDarbas/tree/master)
+>[Grįžti į pagrindinį](https://github.com/DainiusKun/3-4LabDarbas/tree/master)
