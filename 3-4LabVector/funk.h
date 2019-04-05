@@ -20,4 +20,5 @@ using std::swap;
 using std::left;
 using std::right;
 using std::fixed;
+using std::ofstream;
 #endif // FUNK_H_INCLUDED

@@ -260,37 +260,122 @@ int main()
                 if(s[j].Vardas < s[i].Vardas) swap(s[j], s[i]);
             }
         }
-        cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
+        cout << "Ar norite rasyti i failus, ar i ekrana?\n";
         cin >> VM;
-        while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
+        while(!(VM=="Failus" || VM=="failus" || VM=="Ekrana" || VM=="ekrana"))
         {
-            cout << "Vidurki ar mediana?" << endl;
-                cin >> VM;
+            cout << "Failus ar ekrana?" << endl;
+            cin >> VM;
         }
-        if(VM=="Vidurki" || VM=="vidurki")
+        if(VM=="Ekrana")
         {
-            cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[0];
-            cout.fill('-');
-            cout.width(41);
-            cout << "\n";
-            cout.fill(' ');
-            cout << "\n";
-            for(int j = 0; j < n; j++)
+            cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
+            cin >> VM;
+            while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
             {
-                cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].R << endl;
+                cout << "Vidurki ar mediana?" << endl;
+                cin >> VM;
+            }
+            if(VM=="Vidurki" || VM=="vidurki")
+            {
+                cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[0];
+                cout.fill('-');
+                cout.width(41);
+                cout << "\n";
+                cout.fill(' ');
+                cout << "\n";
+                for(int j = 0; j < n; j++)
+                {
+                    cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].R << endl;
+                }
+            }
+            if(VM=="Mediana" || VM=="mediana")
+            {
+                cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[1];
+                cout.fill('-');
+                cout.width(41);
+                cout << "\n";
+                cout.fill(' ');
+                cout << "\n";
+                for(int j = 0; j < n; j++)
+                {
+                    cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].M << endl;
+                }
             }
         }
-        if(VM=="Mediana" || VM=="mediana")
+        else
         {
-            cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[1];
-            cout.fill('-');
-            cout.width(41);
-            cout << "\n";
-            cout.fill(' ');
-            cout << "\n";
-            for(int j = 0; j < n; j++)
+            if(VM =="Failus" || VM == "faila")
             {
-                cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].M << endl;
+                cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
+                cin >> VM;
+                while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
+                {
+                    cout << "Vidurki ar mediana?" << endl;
+                    cin >> VM;
+                }
+                vector <St> Vargsai;
+                vector <St> Protingi;
+                if(VM == "Vidurki" || VM == "vidurki")
+                {
+                    for (int i = 0; i <n; i++)
+                    {
+                        if(s[i].R<5) Vargsai.push_back(s[i]);
+                        else Protingi.push_back(s[i]);
+                        ofstream fr("Vargsai.txt");
+                        ofstream fg("Protingi.txt");
+                        fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[1];
+                        fr.fill('-');
+                        fr.width(41);
+                        fr << "\n";
+                        fr.fill(' ');
+                        fr << "\n";
+                        for(int j = 0; j < Vargsai.size(); j++)
+                        {
+                            fr << left << setw(11)<< Vargsai[j].Vardas << setw(13) << Vargsai[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai[j].R << endl;
+                        }
+                        fg << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[1];
+                        fg.fill('-');
+                        fg.width(41);
+                        fg << "\n";
+                        fg.fill(' ');
+                        fg << "\n";
+                        for(int j = 0; j < Protingi.size(); j++)
+                        {
+                            fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].R << endl;
+                        }
+                    }
+                }
+                if(VM== "Mediana" || VM == "mediana")
+                {
+                    for (int i = 0; i <n; i++)
+                    {
+                        if(s[i].M<5) Vargsai.push_back(s[i]);
+                        else Protingi.push_back(s[i]);
+                        ofstream fr("Vargsai.txt");
+                        ofstream fg("Protingi.txt");
+                        fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[1];
+                        fr.fill('-');
+                        fr.width(41);
+                        fr << "\n";
+                        fr.fill(' ');
+                        fr << "\n";
+                        for(int j = 0; j < Vargsai.size(); j++)
+                        {
+                            fr << left << setw(11)<< Vargsai[j].Vardas << setw(13) << Vargsai[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai[j].M << endl;
+                        }
+                        fg << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[1];
+                        fg.fill('-');
+                        fg.width(41);
+                        fg << "\n";
+                        fg.fill(' ');
+                        fg << "\n";
+                        for(int j = 0; j < Protingi.size(); j++)
+                        {
+                            fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].M << endl;
+                        }
+                    }
+                }
             }
         }
     }
