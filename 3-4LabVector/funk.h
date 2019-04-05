@@ -21,4 +21,5 @@ using std::left;
 using std::right;
 using std::fixed;
 using std::ofstream;
+void programa();
 #endif // FUNK_H_INCLUDED
