@@ -8,7 +8,7 @@
 	"funk.h"
 	"struct.h"
 
-1554420796 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funk.h
+1554450679 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funk.h
 	<iostream>
 	<string>
 	<iomanip>
@@ -16,9 +16,9 @@
 	<fstream>
 	<algorithm>
 
-1554420759 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\struct.h
+1554450848 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\struct.h
 
-1554420438 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funk.cpp
+1554450582 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funk.cpp
 	"funk.h"
 	"struct.h"
 

@@ -1,5 +1,6 @@
 #ifndef STRUCT_H_INCLUDED
 #define STRUCT_H_INCLUDED
+
 struct St
 {
     string Vardas, Pavarde;

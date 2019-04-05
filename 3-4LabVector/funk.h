@@ -20,5 +20,5 @@ using std::swap;
 using std::left;
 using std::right;
 using std::fixed;
-void menu();
+void programa();
 #endif // FUNK_H_INCLUDED
