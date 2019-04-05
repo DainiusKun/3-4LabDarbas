@@ -9,8 +9,8 @@ void programa()
     cin >> VM;
     while(!(VM=="Failo" || VM=="failo" || VM=="Ranka" || VM=="ranka"))
     {
-                cout << "Failo ar ranka?" << endl;
-                cin >> VM;
+        cout << "Failo ar ranka?" << endl;
+        cin >> VM;
     }
     if(VM=="Failo" || VM == "failo")
     {
