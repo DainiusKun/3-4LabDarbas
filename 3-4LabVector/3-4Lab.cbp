@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Funkci.cpp" />
 		<Unit filename="funk.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="struct.h" />
