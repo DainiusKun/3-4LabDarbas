@@ -2,4 +2,6 @@
 int main()
 {
     programa();
+    system("pause");
+    return 0;
 }

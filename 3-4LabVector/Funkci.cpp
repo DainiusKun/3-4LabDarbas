@@ -1,5 +1,6 @@
 #include "funk.h"
 #include "struct.h"
+#include <time.h>
 void skaitymas(vector <St> &s, const char fd[], int n);
 void Rezultatai(vector <St> &s, int n);
 void VRik(vector <St> &s, int n);
@@ -317,4 +318,6 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             }
         }
     }
+    double r = double(clock()*1.0/CLOCKS_PER_SEC);
+    cout << r << endl;
 }
