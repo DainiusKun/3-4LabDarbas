@@ -299,14 +299,17 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             else Protingi.push_back(s[i]);
             ofstream fr("Vargsai.txt");
             ofstream fg("Protingi.txt");
-            fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Med.)";
+            fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fr.fill('-');
             fr.width(41);
             fr << "\n";
             fr.fill(' ');
             fr << "\n";
             for(int j = 0; j < Vargsai.size(); j++)
-            fg << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Med.)";
+            {
+                fr << left << setw(11)<< Vargsai[j].Vardas << setw(13) << Vargsai[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai[j].M << endl;
+            }
+            fg << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fg.fill('-');
             fg.width(41);
             fg << "\n";
