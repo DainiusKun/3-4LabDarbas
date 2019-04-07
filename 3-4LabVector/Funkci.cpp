@@ -279,6 +279,7 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             {
                 fr << left << setw(11)<< Vargsai[j].Vardas << setw(13) << Vargsai[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai[j].R << endl;
             }
+            fr.close();
             fg << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fg.fill('-');
             fg.width(41);
@@ -289,6 +290,7 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             {
                 fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].R << endl;
             }
+            fg.close();
         }
     }
     if(VM== "Mediana" || VM == "mediana")
@@ -307,6 +309,7 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             {
                 fr << left << setw(11)<< Vargsai[j].Vardas << setw(13) << Vargsai[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai[j].M << endl;
             }
+            fr.close();
             fg << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fg.fill('-');
             fg.width(41);
@@ -317,8 +320,10 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             {
                 fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].M << endl;
             }
+            fg.close();
         }
     }
+    //Spartos Analizei
     double r = double(clock()*1.0/CLOCKS_PER_SEC);
-    cout << r << endl;
+    cout << r << "sekundës" << endl;
 }
