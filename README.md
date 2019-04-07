@@ -15,7 +15,7 @@ Programa naudoja nuskaitymą iš failų.
 * 3.2 Jeigu nenorite atsitiktinių rezultatų, duomenys dinamiškai įrašomi.
 4. Įrašomi egzaminų rezultatai.
 5. Programa apskaičiuoja rezultatą pagal medianą ir rezultatą pagal vidurki.
-> Mediana paskaičiuojama su bubblesort funkcija.
+> Mediana paskaičiuojama su sort <algorithm> funkcija.
 6. Galiausiai programa paklausia ar norite pamatyti mediana, ar vidurkį.
 * Programa rezultatus surikiuoja pagal vardą.
 >{Spartos analizė](https://github.com/DainiusKun/3-4LabDarbas/blob/0.4V/3-4LabVector/Spartos%20analize.xlsx)
