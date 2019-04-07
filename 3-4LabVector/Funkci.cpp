@@ -252,6 +252,13 @@ void Ekranas(vector <St> &s, int n, string VM)
 }
 void ProtingiIrNe(vector <St> &s, int n, string VM)
 {
+    ofstream fr("Vargsai.txt");
+    ofstream fg("Protingi.txt");
+    for (int i = 0; i <n; i++)
+    {
+        if(s[i].R<5) Vargsai.push_back(s[i]);
+        else Protingi.push_back(s[i]);
+    }
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
     while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
@@ -261,11 +268,6 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
     }
     vector <St> Vargsai;
     vector <St> Protingi;
-    for (int i = 0; i <n; i++)
-    {
-        if(s[i].R<5) Vargsai.push_back(s[i]);
-        else Protingi.push_back(s[i]);
-    }
     if(VM == "Vidurki" || VM == "vidurki")
     {
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
