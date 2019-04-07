@@ -252,8 +252,6 @@ void Ekranas(vector <St> &s, int n, string VM)
 }
 void ProtingiIrNe(vector <St> &s, int n, string VM)
 {
-    ofstream fr("Vargsai.txt");
-    ofstream fg("Protingi.txt");
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
     while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
@@ -263,12 +261,13 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
     }
     vector <St> Vargsai;
     vector <St> Protingi;
+    for (int i = 0; i <n; i++)
+    {
+        if(s[i].R<5) Vargsai.push_back(s[i]);
+        else Protingi.push_back(s[i]);
+    }
     if(VM == "Vidurki" || VM == "vidurki")
     {
-        for (int i = 0; i <n; i++)
-        {
-            if(s[i].R<5) Vargsai.push_back(s[i]);
-            else Protingi.push_back(s[i]);
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fr.fill('-');
             fr.width(41);
@@ -290,15 +289,10 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             {
                 fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].R << endl;
             }
-            fg.close();
         }
     }
     if(VM== "Mediana" || VM == "mediana")
     {
-        for (int i = 0; i <n; i++)
-        {
-            if(s[i].M<5) Vargsai.push_back(s[i]);
-            else Protingi.push_back(s[i]);
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fr.fill('-');
             fr.width(41);
@@ -316,6 +310,7 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             fg << "\n";
             fg.fill(' ');
             fg << "\n";
+            cout << Protingi.size() << endl;
             for(int j = 0; j < Protingi.size(); j++)
             {
                 fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].M << endl;
@@ -325,5 +320,5 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
     }
     //Spartos Analizei
     double r = double(clock()*1.0/CLOCKS_PER_SEC);
-    cout << r << "sekundës" << endl;
+    cout << r << " sekundes" << endl;
 }
