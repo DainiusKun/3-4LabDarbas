@@ -11,5 +11,6 @@
 4. Įrašomi egzaminų rezultatai.
 5. Programa apskaičiuoja rezultatą pagal medianą ir rezultatą pagal vidurki.
 > Mediana paskaičiuojama su bubblesort funkcija.
+> Vectorinėje versijoje mediana paskaičiuojama su sort <algorithm> funkcija.
 6. Galiausiai programa paklausia ar norite pamatyti mediana, ar vidurkį.
 >[Grįžti į pagrindinį](https://github.com/DainiusKun/3-4LabDarbas/tree/master)
