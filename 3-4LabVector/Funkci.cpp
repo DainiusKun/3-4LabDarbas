@@ -254,6 +254,8 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
 {
     ofstream fr("Vargsai.txt");
     ofstream fg("Protingi.txt");
+    vector <St> Vargsai;
+    vector <St> Protingi;
     for (int i = 0; i <n; i++)
     {
         if(s[i].R<5) Vargsai.push_back(s[i]);
@@ -266,8 +268,6 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
         cout << "Vidurki ar mediana?" << endl;
         cin >> VM;
     }
-    vector <St> Vargsai;
-    vector <St> Protingi;
     if(VM == "Vidurki" || VM == "vidurki")
     {
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
@@ -291,8 +291,8 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             {
                 fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].R << endl;
             }
-        }
     }
+
     if(VM== "Mediana" || VM == "mediana")
     {
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
@@ -318,7 +318,6 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
                 fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].M << endl;
             }
             fg.close();
-        }
     }
     //Spartos Analizei
     double r = double(clock()*1.0/CLOCKS_PER_SEC);
