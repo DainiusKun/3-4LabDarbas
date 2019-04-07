@@ -291,6 +291,7 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             {
                 fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].R << endl;
             }
+            fg.close();
     }
 
     if(VM== "Mediana" || VM == "mediana")
@@ -312,7 +313,6 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             fg << "\n";
             fg.fill(' ');
             fg << "\n";
-            cout << Protingi.size() << endl;
             for(int j = 0; j < Protingi.size(); j++)
             {
                 fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].M << endl;
