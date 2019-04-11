@@ -22,21 +22,31 @@ void programa()
         cout << "Kiek studentu grupeje? 2, 10, 100, 1000, 10000 ar 100000?\n";
         while(!(cin >> n))
         {
-            cout << "10, 100, 1000, 10000 ar 100000?\n";
+            cout << "2, 10, 100, 1000, 10000 ar 100000?\n";
             cin.clear();
             cin.ignore(256,'\n');
         }
         //Failu generavimas
-        ofstream fk("Gen.txt");
-        fk << "Vardas Pavarde ND1 ND2 ND3 ND4 ND5 Egzaminas\n";
-        for(int FK = 0; FK < n; FK++)
-        {
-            fk << "Vardas" << rand()%10+1 << " Pavarde" << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << endl;
-        }
-        fk.close();
-        const char FL[] = "Gen.txt";
         vector<St> s(n);
-        skaitymas(s, FL, n);
+        const char FL1[] = "kursiokai.txt";
+        const char FL2[] = "10.txt";
+        const char FL3[] = "100.txt";
+        const char FL4[] = "1000.txt";
+        const char FL5[] = "10000.txt";
+        const char FL6[] = "100000.txt";
+        while(!(n==2 || n==10 || n==100 || n==1000 || n == 10000 || n == 100000))
+        {
+            cout << "2, 10, 100, 1000, 10000 ar 100000?\n";
+            cin.clear();
+            cin.ignore(256,'\n');
+            cin >> n;
+        }
+        if(n==2) skaitymas(s,FL1,n);
+        if(n==10) skaitymas(s,FL2,n);
+        if(n==100) skaitymas(s,FL3,n);
+        if(n==1000) skaitymas(s,FL4,n);
+        if(n==10000) skaitymas(s,FL5,n);
+        if(n==100000) skaitymas(s,FL6,n);
         Rezultatai(s, n);
         VRik(s, n);
         cout << "Ar norite rasyti i failus, ar i ekrana?\n";
