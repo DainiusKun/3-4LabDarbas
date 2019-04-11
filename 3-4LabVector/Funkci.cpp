@@ -28,6 +28,18 @@ void programa()
         const char FL4[] = "1000.txt";
         const char FL5[] = "10000.txt";
         const char FL6[] = "100000.txt";
+        while(!(cin >> n))
+        {
+            cout << "2, 10, 100, 1000, 10000 ar 100000?\n";
+            cin.clear();
+            cin.ignore(256,'\n');
+        }
+        while(!(n==2 || n==10 || n==100 || n==1000 || n == 10000 || n == 100000))
+        {
+            cout << "2, 10, 100, 1000, 10000 ar 100000?\n";
+            cin.clear();
+            cin.ignore(256,'\n');
+        }
         if(n==2) skaitymas(s,FL1,n);
         if(n==10) skaitymas(s,FL2,n);
         if(n==100) skaitymas(s,FL3,n);
