@@ -22,96 +22,103 @@ int n, k = 0;
         vector<string> vec;
         stringstream ss;
         getline(fd, VM);
-        while(getline(fd, VM, '\n'))
+        if(fd.is_open())
         {
-            ss.str(VM);
-            while(ss >> word)
+            while(getline(fd, VM, '\n'))
             {
-                vec.push_back(word);
-            }
-            s[t].Vardas=vec[k];
-            k++;
-            s[t].Pavarde=vec[k];
-            k++;
-            for(int j = 0; j < 5; j++)
-            {
-                d=stod(vec[k]);
-                s[t].ND.push_back(d);
-                k++;
-            }
-            d=stod(vec[k]);
-            s[t].E=d;
-            t++;
-            k=0;
-            vec.clear();
-            ss.clear();
-        }
-        fd.close();
-        for (int x = 0; x < 2; x++)
-        {
-//////////////////////////Vidurkio skaiciavimas
-            for(int y = 0; y < s[x].ND.size() ; y++)
-            {
-                s[x].R=s[x].R+(s[x].ND[y]);
-            }
-                s[x].R=s[x].R/s[x].ND.size()*0.4+s[x].E*0.6;
-/////////////////////////Mediana
-            if(s[x].ND.size()==1)
-            {
-                s[x].M=s[x].ND[s[x].ND.size()-1];
-            }
-            else
-            {
-                if(s[x].ND.size()%2==0)
+                ss.str(VM);
+                while(ss >> word)
                 {
-                    s[x].M=(s[x].ND[s[x].ND.size()-2/2-1]+s[x].ND[s[x].ND.size()-1/2])*0.5;
+                    vec.push_back(word);
+                }
+                s[t].Vardas=vec[k];
+                k++;
+                s[t].Pavarde=vec[k];
+                k++;
+                for(int j = 0; j < 5; j++)
+                {
+                    d=stod(vec[k]);
+                    s[t].ND.push_back(d);
+                    k++;
+                }
+                d=stod(vec[k]);
+                s[t].E=d;
+                t++;
+                k=0;
+                vec.clear();
+                ss.clear();
+            }
+            fd.close();
+            for (int x = 0; x < 2; x++)
+            {
+    //////////////////////////Vidurkio skaiciavimas
+                for(int y = 0; y < s[x].ND.size() ; y++)
+                {
+                    s[x].R=s[x].R+(s[x].ND[y]);
+                }
+                    s[x].R=s[x].R/s[x].ND.size()*0.4+s[x].E*0.6;
+    /////////////////////////Mediana
+                if(s[x].ND.size()==1)
+                {
+                    s[x].M=s[x].ND[s[x].ND.size()-1];
                 }
                 else
                 {
-                    s[x].M=(s[x].ND[s[x].ND.size()-1/2-1]);
+                    if(s[x].ND.size()%2==0)
+                    {
+                        s[x].M=(s[x].ND[s[x].ND.size()-2/2-1]+s[x].ND[s[x].ND.size()-1/2])*0.5;
+                    }
+                    else
+                    {
+                        s[x].M=(s[x].ND[s[x].ND.size()-1/2-1]);
+                    }
+                }
+    //////////////Eilutes pabaiga
+            }
+                for (int i = 0; i <2-1; i++)
+            {
+                for (int j=i+1; j < 2; j++)
+                {
+                    if(s[j].Vardas < s[i].Vardas) swap(s[j], s[i]);
                 }
             }
-//////////////Eilutes pabaiga
-        }
-            for (int i = 0; i <2-1; i++)
-        {
-            for (int j=i+1; j < 2; j++)
+            cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
+            cin >> VM;
+            while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
             {
-                if(s[j].Vardas < s[i].Vardas) swap(s[j], s[i]);
+                cout << "Vidurki ar mediana?" << endl;
+                    cin >> VM;
+            }
+            if(VM=="Vidurki" || VM=="vidurki")
+            {
+                cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[0];
+                cout.fill('-');
+                cout.width(41);
+                cout << "\n";
+                cout.fill(' ');
+                cout << "\n";
+                for(int j = 0; j < 2; j++)
+                {
+                    cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].R << endl;
+                }
+            }
+            if(VM=="Mediana" || VM=="mediana")
+            {
+                cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[1];
+                cout.fill('-');
+                cout.width(41);
+                cout << "\n";
+                cout.fill(' ');
+                cout << "\n";
+                for(int j = 0; j < 2; j++)
+                {
+                    cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].M << endl;
+                }
             }
         }
-        cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
-        cin >> VM;
-        while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
+        else
         {
-            cout << "Vidurki ar mediana?" << endl;
-                cin >> VM;
-        }
-        if(VM=="Vidurki" || VM=="vidurki")
-        {
-            cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[0];
-            cout.fill('-');
-            cout.width(41);
-            cout << "\n";
-            cout.fill(' ');
-            cout << "\n";
-            for(int j = 0; j < 2; j++)
-            {
-                cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].R << endl;
-            }
-        }
-        if(VM=="Mediana" || VM=="mediana")
-        {
-            cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << VidM[1];
-            cout.fill('-');
-            cout.width(41);
-            cout << "\n";
-            cout.fill(' ');
-            cout << "\n";
-            for(int j = 0; j < 2; j++)
-            {
-                cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].M << endl;
-            }
+            cout << "Neturite failo \"kursiokai.txt\"\n";
         }
     }
     else
@@ -262,4 +269,5 @@ int n, k = 0;
             }
         }
     }
+    system("pause");
 }
