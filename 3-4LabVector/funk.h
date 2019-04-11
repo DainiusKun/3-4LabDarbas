@@ -6,6 +6,8 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <list>
+#include <deque>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -21,5 +23,7 @@ using std::left;
 using std::right;
 using std::fixed;
 using std::ofstream;
+using std::list;
+using std::deque;
 void programa();
 #endif // FUNK_H_INCLUDED

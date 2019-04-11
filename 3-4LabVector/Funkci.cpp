@@ -1,11 +1,11 @@
 #include "funk.h"
 #include "struct.h"
 #include <time.h>
-void skaitymas(vector <St> &s, const char fd[], int n);
-void Rezultatai(vector <St> &s, int n);
-void VRik(vector <St> &s, int n);
-void Ekranas(vector <St> &s, int n, string VM);
-void ProtingiIrNe(vector <St> &s, int n, string VM);
+void skaitymas(deque <St> &s, const char fd[], int n);
+void Rezultatai(deque <St> &s, int n);
+void VRik(deque <St> &s, int n);
+void Ekranas(deque <St> &s, int n, string VM);
+void ProtingiIrNe(deque <St> &s, int n, string VM);
 void programa()
 {
     int n, k = 0;
@@ -19,29 +19,26 @@ void programa()
     }
     if(VM=="Failo" || VM == "failo")
     {
-        cout << "Kiek studentu grupeje? 2, 10, 100, 1000, 10000 ar 100000?\n";
+        cout << "Kiek studentu grupeje? 10, 100, 1000, 10000 ar 100000?\n";
         while(!(cin >> n))
         {
-            cout << "2, 10, 100, 1000, 10000 ar 100000?\n";
+            cout << "10, 100, 1000, 10000 ar 100000?\n";
             cin.clear();
             cin.ignore(256,'\n');
         }
-        //Failu generavimas
-        vector<St> s(n);
-        const char FL1[] = "kursiokai.txt";
+        deque<St> s(n);
         const char FL2[] = "10.txt";
         const char FL3[] = "100.txt";
         const char FL4[] = "1000.txt";
         const char FL5[] = "10000.txt";
         const char FL6[] = "100000.txt";
-        while(!(n==2 || n==10 || n==100 || n==1000 || n == 10000 || n == 100000))
+        while(!(n==10 || n==100 || n==1000 || n == 10000 || n == 100000))
         {
-            cout << "2, 10, 100, 1000, 10000 ar 100000?\n";
+            cout << "10, 100, 1000, 10000 ar 100000?\n";
             cin.clear();
             cin.ignore(256,'\n');
             cin >> n;
         }
-        if(n==2) skaitymas(s,FL1,n);
         if(n==10) skaitymas(s,FL2,n);
         if(n==100) skaitymas(s,FL3,n);
         if(n==1000) skaitymas(s,FL4,n);
@@ -49,6 +46,9 @@ void programa()
         if(n==100000) skaitymas(s,FL6,n);
         Rezultatai(s, n);
         VRik(s, n);
+        //Spartos analize
+        double r = double(clock()*1.0/CLOCKS_PER_SEC);
+        cout << r << " sekundes" << endl;
         cout << "Ar norite rasyti i failus, ar i ekrana?\n";
         cin >> VM;
         while(!(VM=="Failus" || VM=="failus" || VM=="Ekrana" || VM=="ekrana"))
@@ -79,7 +79,7 @@ void programa()
                 cin.clear();
                 cin.ignore(256,'\n');
             }
-            vector<St> s(n);
+            deque<St> s(n);
             //Pagrindinis skaiciavimas
             for (int i = 0; i < n; i++)
             {
@@ -156,7 +156,7 @@ void programa()
         }
     }
 }
-void skaitymas(vector <St> &s, const char FV[], int n)
+void skaitymas(deque <St> &s, const char FV[], int n)
 {
     ifstream fd(FV);
     if(fd.is_open())
@@ -164,7 +164,7 @@ void skaitymas(vector <St> &s, const char FV[], int n)
         int t = 0, k = 0, d;
         string linija;
         string word = "";
-        vector<string> vec;
+        deque<string> vec;
         stringstream ss;
         getline(fd, linija);
         while(getline(fd, linija, '\n'))
@@ -199,7 +199,7 @@ void skaitymas(vector <St> &s, const char FV[], int n)
     }
 
 }
-void Rezultatai(vector <St> &s, int n)
+void Rezultatai(deque <St> &s, int n)
 {
     for (int x = 0; x < n; x++)
     {
@@ -225,7 +225,7 @@ void Rezultatai(vector <St> &s, int n)
         }
     }
 }
-void VRik(vector <St> &s, int n)
+void VRik(deque <St> &s, int n)
 {
     for (int i = 0; i <n-1; i++)
     {
@@ -235,7 +235,7 @@ void VRik(vector <St> &s, int n)
         }
     }
 }
-void Ekranas(vector <St> &s, int n, string VM)
+void Ekranas(deque <St> &s, int n, string VM)
 {
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
@@ -271,12 +271,12 @@ void Ekranas(vector <St> &s, int n, string VM)
         }
     }
 }
-void ProtingiIrNe(vector <St> &s, int n, string VM)
+void ProtingiIrNe(deque <St> &s, int n, string VM)
 {
     ofstream fr("Vargsai.txt");
     ofstream fg("Protingi.txt");
-    vector <St> Vargsai;
-    vector <St> Protingi;
+    deque <St> Vargsai;
+    deque <St> Protingi;
     for (int i = 0; i <n; i++)
     {
         if(s[i].R<5) Vargsai.push_back(s[i]);
@@ -340,7 +340,4 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             }
             fg.close();
     }
-    //Spartos Analizei
-    double r = double(clock()*1.0/CLOCKS_PER_SEC);
-    cout << r << " sekundes" << endl;
 }
