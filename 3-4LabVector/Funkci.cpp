@@ -19,7 +19,7 @@ void programa()
     }
     if(VM=="Failo" || VM == "failo")
     {
-        cout << "Kiek studentu grupeje? 2, 10, 100, 1000, 10000 ar 100000?\n";
+        cout << "Kiek studentu grupeje? 10, 100, 1000, 10000 ar 100000?\n";
         while(!(cin >> n))
         {
             cout << "10, 100, 1000, 10000 ar 100000?\n";
