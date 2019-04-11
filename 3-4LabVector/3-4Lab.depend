@@ -4,10 +4,10 @@
 	<iomanip>
 	<string>
 
-1554672009 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\main.cpp
+1555008243 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\main.cpp
 	"funk.h"
 
-1554672009 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funk.h
+1555008243 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funk.h
 	<iostream>
 	<string>
 	<iomanip>
@@ -15,13 +15,13 @@
 	<fstream>
 	<algorithm>
 
-1554469750 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\struct.h
+1555008243 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\struct.h
 
 1554420438 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funk.cpp
 	"funk.h"
 	"struct.h"
 
-1554625837 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funkci.cpp
+1555010574 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funkci.cpp
 	"funk.h"
 	"struct.h"
 	<time.h>

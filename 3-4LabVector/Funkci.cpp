@@ -20,32 +20,23 @@ void programa()
     if(VM=="Failo" || VM == "failo")
     {
         cout << "Kiek studentu grupeje? 2, 10, 100, 1000, 10000 ar 100000?\n";
-        cin >> n;
-        vector<St> s(n);
-        const char FL1[] = "kursiokai.txt";
-        const char FL2[] = "10.txt";
-        const char FL3[] = "100.txt";
-        const char FL4[] = "1000.txt";
-        const char FL5[] = "10000.txt";
-        const char FL6[] = "100000.txt";
         while(!(cin >> n))
         {
-            cout << "2, 10, 100, 1000, 10000 ar 100000?\n";
+            cout << "10, 100, 1000, 10000 ar 100000?\n";
             cin.clear();
             cin.ignore(256,'\n');
         }
-        while(!(n==2 || n==10 || n==100 || n==1000 || n == 10000 || n == 100000))
+        //Failu generavimas
+        ofstream fk("Gen.txt");
+        fk << "Vardas Pavarde ND1 ND2 ND3 ND4 ND5 Egzaminas\n";
+        for(int FK = 0; FK < n; FK++)
         {
-            cout << "2, 10, 100, 1000, 10000 ar 100000?\n";
-            cin.clear();
-            cin.ignore(256,'\n');
+            fk << "Vardas" << rand()%10+1 << " Pavarde" << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << endl;
         }
-        if(n==2) skaitymas(s,FL1,n);
-        if(n==10) skaitymas(s,FL2,n);
-        if(n==100) skaitymas(s,FL3,n);
-        if(n==1000) skaitymas(s,FL4,n);
-        if(n==10000) skaitymas(s,FL5,n);
-        if(n==100000) skaitymas(s,FL6,n);
+        fk.close();
+        const char FL[] = "Gen.txt";
+        vector<St> s(n);
+        skaitymas(s, FL, n);
         Rezultatai(s, n);
         VRik(s, n);
         cout << "Ar norite rasyti i failus, ar i ekrana?\n";
@@ -157,38 +148,46 @@ void programa()
 }
 void skaitymas(vector <St> &s, const char FV[], int n)
 {
-            ifstream fd(FV);
-            int t = 0, k = 0, d;
-            string linija;
-            string word = "";
-            vector<string> vec;
-            stringstream ss;
-            getline(fd, linija);
-            while(getline(fd, linija, '\n'))
+    ifstream fd(FV);
+    if(fd.is_open())
+    {
+        int t = 0, k = 0, d;
+        string linija;
+        string word = "";
+        vector<string> vec;
+        stringstream ss;
+        getline(fd, linija);
+        while(getline(fd, linija, '\n'))
+        {
+            ss.str(linija);
+            while(ss >> word)
             {
-                ss.str(linija);
-                while(ss >> word)
-                {
-                    vec.push_back(word);
-                }
-                s[t].Vardas=vec[k];
-                k++;
-                s[t].Pavarde=vec[k];
-                k++;
-                for(int j = 0; j < 5; j++)
-                {
-                    d=stod(vec[k]);
-                    s[t].ND.push_back(d);
-                    k++;
-                }
-                d=stod(vec[k]);
-                s[t].E=d;
-                t++;
-                k=0;
-                vec.clear();
-                ss.clear();
+                vec.push_back(word);
             }
-                fd.close();
+            s[t].Vardas=vec[k];
+            k++;
+            s[t].Pavarde=vec[k];
+            k++;
+            for(int j = 0; j < 5; j++)
+            {
+                d=stod(vec[k]);
+                s[t].ND.push_back(d);
+                k++;
+            }
+            d=stod(vec[k]);
+            s[t].E=d;
+            t++;
+            k=0;
+            vec.clear();
+            ss.clear();
+        }
+        fd.close();
+    }
+    else
+    {
+        if(fd.fail())cout << "Neturite tinkamo failo.\n";
+    }
+
 }
 void Rezultatai(vector <St> &s, int n)
 {
