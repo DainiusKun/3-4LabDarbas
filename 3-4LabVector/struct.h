@@ -4,7 +4,7 @@ struct St
 {
     string Vardas, Pavarde;
     double E, R, M;
-    deque <double> ND;
+    list <double> ND;
     void rik();
     void vidurkis();
 };

@@ -1,14 +1,15 @@
 #include "funk.h"
 #include "struct.h"
 #include <time.h>
-void skaitymas(deque <St> &s, const char fd[], int n);
-void Rezultatai(deque <St> &s, int n);
-void VRik(deque <St> &s, int n);
-void Ekranas(deque <St> &s, int n, string VM);
-void ProtingiIrNe(deque <St> &s, int n, string VM);
+void skaitymas(list <St> &s, const char fd[], int n, St temp);
+void Rezultatai(list <St> &s, int n);
+void VRik(list <St> &s, int n);
+void Ekranas(list <St> &s, int n, string VM);
+void ProtingiIrNe(list <St> &s, int n, string VM);
 void programa()
 {
     int n, k = 0;
+    St temp;
     string VM;
     cout << "Ar norite skaityti duomenis is failo, ar norite irasyti ranka?\n";
     cin >> VM;
@@ -26,7 +27,7 @@ void programa()
             cin.clear();
             cin.ignore(256,'\n');
         }
-        deque<St> s(n);
+        list<St> s(n);
         const char FL2[] = "10.txt";
         const char FL3[] = "100.txt";
         const char FL4[] = "1000.txt";
@@ -39,11 +40,11 @@ void programa()
             cin.ignore(256,'\n');
             cin >> n;
         }
-        if(n==10) skaitymas(s,FL2,n);
-        if(n==100) skaitymas(s,FL3,n);
-        if(n==1000) skaitymas(s,FL4,n);
-        if(n==10000) skaitymas(s,FL5,n);
-        if(n==100000) skaitymas(s,FL6,n);
+        if(n==10) skaitymas(s,FL2,n, temp);
+        if(n==100) skaitymas(s,FL3,n, temp);
+        if(n==1000) skaitymas(s,FL4,n, temp);
+        if(n==10000) skaitymas(s,FL5,n, temp);
+        if(n==100000) skaitymas(s,FL6,n, temp);
         Rezultatai(s, n);
         VRik(s, n);
         //Spartos analize
@@ -79,13 +80,13 @@ void programa()
                 cin.clear();
                 cin.ignore(256,'\n');
             }
-            deque<St> s(n);
+            list <St> s(n);
             //Pagrindinis skaiciavimas
             for (int i = 0; i < n; i++)
             {
                 cout << "Irasykite " << i+1 << "-ojo studento varda ir pavarde.\n";
-                cin >> s[i].Vardas;
-                cin >> s[i].Pavarde;
+                cin >> temp.Vardas;
+                cin >> temp.Pavarde;
                 cout << "Ar norite atsitiktiniu rezultatu?\n";
                 cin >> VM;
                 while(!(VM=="Taip" || VM=="taip" || VM=="Ne" || VM=="ne"))
@@ -98,9 +99,10 @@ void programa()
                     k=rand();
                     for(int g = 0; g < k; g++)
                     {
-                        s[i].ND.push_back(rand()%10+1);
+                        temp.ND.push_back(rand()%10+1);
                     }
-                    s[i].E=rand()%10+1;
+                    temp.E=rand()%10+1;
+                    s.push_back(temp);
                     Rezultatai(s, n);
                 }
                 else
@@ -116,7 +118,7 @@ void programa()
                         }
                         while(k>0 && k < 11)
                         {
-                            s[i].ND.push_back(k);
+                            temp.ND.push_back(k);
                             cin >> k;
                             while(!(cin))
                             {
@@ -125,29 +127,30 @@ void programa()
                                 cin.ignore(256,'\n');
                             }
                         }
-                        while(s[i].ND.size()==0)
+                        while(temp.ND.size()==0)
                         {
                             while(!(k>0 && k < 11))
                             {
                                 cout << "Irasykite bent viena rezultata." << endl;
                                 cin >> k;
                             }
-                            s[i].ND.push_back(k);
+                            temp.ND.push_back(k);
                         }
                         cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultata.\n";
-                        while(!(cin >> s[i].E))
+                        while(!(cin >> temp.E))
                         {
                             cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultata." << endl;
                             cin.clear();
                             cin.ignore(256,'\n');
                         }
-                        while(s[i].E<0 || s[i].E>10)
+                        while(temp.E<0 || temp.E>10)
                         {
                             cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultata." << endl;
                             cin.clear();
                             cin.ignore(256,'\n');
-                            cin >> s[i].E;
+                            cin >> temp.E;
                         }
+                        s.push_back(temp);
                         Rezultatai(s, n);
                     }
                 }
@@ -156,15 +159,16 @@ void programa()
         }
     }
 }
-void skaitymas(deque <St> &s, const char FV[], int n)
+void skaitymas(list <St> &s, const char FV[], int n)
 {
+    St temp;
     ifstream fd(FV);
     if(fd.is_open())
     {
         int t = 0, k = 0, d;
         string linija;
         string word = "";
-        deque<string> vec;
+        list<string> vec;
         stringstream ss;
         getline(fd, linija);
         while(getline(fd, linija, '\n'))
@@ -174,20 +178,21 @@ void skaitymas(deque <St> &s, const char FV[], int n)
             {
                 vec.push_back(word);
             }
-            s[t].Vardas=vec[k];
+            temp.Vardas=vec[k];
             k++;
-            s[t].Pavarde=vec[k];
+            temp.Pavarde=vec[k];
             k++;
             for(int j = 0; j < 5; j++)
             {
                 d=stod(vec[k]);
-                s[t].ND.push_back(d);
+                temp.ND.push_back(d);
                 k++;
             }
             d=stod(vec[k]);
-            s[t].E=d;
+            temp.E=d;
             t++;
             k=0;
+            s.push_back(temp);
             vec.clear();
             ss.clear();
         }
@@ -199,7 +204,7 @@ void skaitymas(deque <St> &s, const char FV[], int n)
     }
 
 }
-void Rezultatai(deque <St> &s, int n)
+void Rezultatai(list <St> &s, int n)
 {
     for (int x = 0; x < n; x++)
     {
@@ -225,7 +230,7 @@ void Rezultatai(deque <St> &s, int n)
         }
     }
 }
-void VRik(deque <St> &s, int n)
+void VRik(list <St> &s, int n)
 {
     for (int i = 0; i <n-1; i++)
     {
@@ -235,7 +240,7 @@ void VRik(deque <St> &s, int n)
         }
     }
 }
-void Ekranas(deque <St> &s, int n, string VM)
+void Ekranas(list <St> &s, int n, string VM)
 {
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
@@ -271,12 +276,12 @@ void Ekranas(deque <St> &s, int n, string VM)
         }
     }
 }
-void ProtingiIrNe(deque <St> &s, int n, string VM)
+void ProtingiIrNe(list <St> &s, int n, string VM)
 {
     ofstream fr("Vargsai.txt");
     ofstream fg("Protingi.txt");
-    deque <St> Vargsai;
-    deque <St> Protingi;
+    list <St> Vargsai;
+    list <St> Protingi;
     for (int i = 0; i <n; i++)
     {
         if(s[i].R<5) Vargsai.push_back(s[i]);
