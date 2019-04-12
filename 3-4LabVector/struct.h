@@ -3,8 +3,8 @@
 struct St
 {
     string Vardas, Pavarde;
-    double E, R, M;
-    list <double> ND;
+    double E, R = 0, M = 0;
+    vector <double> ND;
     void rik();
     void vidurkis();
 };

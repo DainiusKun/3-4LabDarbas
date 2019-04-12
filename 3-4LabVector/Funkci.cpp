@@ -1,11 +1,12 @@
 #include "funk.h"
 #include "struct.h"
 #include <time.h>
-void skaitymas(list <St> &s, const char fd[], int n, St temp);
+void skaitymas(list <St> &s, const char fd[], int n);
 void Rezultatai(list <St> &s, int n);
 void VRik(list <St> &s, int n);
 void Ekranas(list <St> &s, int n, string VM);
 void ProtingiIrNe(list <St> &s, int n, string VM);
+bool VardTik(const St &a, const St &b);
 void programa()
 {
     int n, k = 0;
@@ -40,11 +41,11 @@ void programa()
             cin.ignore(256,'\n');
             cin >> n;
         }
-        if(n==10) skaitymas(s,FL2,n, temp);
-        if(n==100) skaitymas(s,FL3,n, temp);
-        if(n==1000) skaitymas(s,FL4,n, temp);
-        if(n==10000) skaitymas(s,FL5,n, temp);
-        if(n==100000) skaitymas(s,FL6,n, temp);
+        if(n==10) skaitymas(s,FL2,n);
+        if(n==100) skaitymas(s,FL3,n);
+        if(n==1000) skaitymas(s,FL4,n);
+        if(n==10000) skaitymas(s,FL5,n);
+        if(n==100000) skaitymas(s,FL6,n);
         Rezultatai(s, n);
         VRik(s, n);
         //Spartos analize
@@ -165,10 +166,11 @@ void skaitymas(list <St> &s, const char FV[], int n)
     ifstream fd(FV);
     if(fd.is_open())
     {
-        int t = 0, k = 0, d;
+        int t = 0, k = 0;
+        double d;
         string linija;
         string word = "";
-        list<string> vec;
+        vector <string> vec;
         stringstream ss;
         getline(fd, linija);
         while(getline(fd, linija, '\n'))
@@ -206,39 +208,39 @@ void skaitymas(list <St> &s, const char FV[], int n)
 }
 void Rezultatai(list <St> &s, int n)
 {
+    St temp;
     for (int x = 0; x < n; x++)
     {
-        for(int y = 0; y < s[x].ND.size() ; y++)
+        for(int y = 0; y < s.back().ND.size() ; y++)
         {
-            s[x].R=s[x].R+(s[x].ND[y]);
+            temp.R=temp.R+s.back().ND[y];
         }
-            s[x].R=s[x].R/s[x].ND.size()*0.4+s[x].E*0.6;
-        if(s[x].ND.size()==1)
+            s.back().R=s.back().R/s.back().ND.size()*0.4+s.back().E*0.6;
+        if(s.back().ND.size()==1)
         {
-            s[x].M=s[x].ND[s[x].ND.size()-1];
+            s.back().M=s.back().ND[s.back().ND.size()-1];
         }
         else
         {
-            if(s[x].ND.size()%2==0)
+            if(s.back().ND.size()%2==0)
             {
-                s[x].M=(s[x].ND[s[x].ND.size()-2/2-1]+s[x].ND[s[x].ND.size()-1/2])*0.5;
+                s.back().M=(s.back().ND[s.back().ND.size()-2/2-1]+s.back().ND[s.back().ND.size()-1/2])*0.5;
             }
             else
             {
-                s[x].M=(s[x].ND[s[x].ND.size()-1/2-1]);
+                s.back().M=(s.back().ND[s.back().ND.size()-1/2-1]);
             }
         }
     }
 }
 void VRik(list <St> &s, int n)
 {
-    for (int i = 0; i <n-1; i++)
-    {
-        for (int j=i+1; j < n; j++)
-        {
-            if(s[j].Vardas < s[i].Vardas) swap(s[j], s[i]);
-        }
-    }
+    s.sort(VardTik);
+}
+bool VardTik(const St &a, const St &b)
+{
+    if(a.Vardas == b.Vardas) return a.Pavarde < b.Pavarde;
+    return a.Vardas < b.Pavarde;
 }
 void Ekranas(list <St> &s, int n, string VM)
 {
@@ -259,7 +261,8 @@ void Ekranas(list <St> &s, int n, string VM)
         cout << "\n";
         for(int j = 0; j < n; j++)
         {
-            cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].R << endl;
+            cout << left << setw(11)<< s.back().Vardas << setw(13) << s.back().Pavarde << setw(16) << right << setprecision(2) << fixed << s.back().R << endl;
+            s.pop_back();
         }
     }
     if(VM=="Mediana" || VM=="mediana")
@@ -272,7 +275,8 @@ void Ekranas(list <St> &s, int n, string VM)
         cout << "\n";
         for(int j = 0; j < n; j++)
         {
-            cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].M << endl;
+            cout << left << setw(11)<< s.back().Vardas << setw(13) << s.back().Pavarde << setw(16) << right << setprecision(2) << fixed << s.back().M << endl;
+            s.pop_back();
         }
     }
 }
@@ -284,8 +288,8 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
     list <St> Protingi;
     for (int i = 0; i <n; i++)
     {
-        if(s[i].R<5) Vargsai.push_back(s[i]);
-        else Protingi.push_back(s[i]);
+        //if(s.back().R<5) Vargsai.push_back(s.back().);
+        //else Protingi.push_back(s.back);
     }
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
@@ -304,7 +308,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             fr << "\n";
             for(int j = 0; j < Vargsai.size(); j++)
             {
-                fr << left << setw(11)<< Vargsai[j].Vardas << setw(13) << Vargsai[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai[j].R << endl;
+                fr << left << setw(11)<< Vargsai.back().Vardas << setw(13) << Vargsai.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai.back().R << endl;
             }
             fr.close();
             fg << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
@@ -315,7 +319,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             fg << "\n";
             for(int j = 0; j < Protingi.size(); j++)
             {
-                fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].R << endl;
+                fg << left << setw(11)<< Protingi.back().Vardas << setw(13) << Protingi.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi.back().R << endl;
             }
             fg.close();
     }
@@ -330,7 +334,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             fr << "\n";
             for(int j = 0; j < Vargsai.size(); j++)
             {
-                fr << left << setw(11)<< Vargsai[j].Vardas << setw(13) << Vargsai[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai[j].M << endl;
+                fr << left << setw(11)<< Vargsai.back().Vardas << setw(13) << Vargsai.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai.back().M << endl;
             }
             fr.close();
             fg << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
@@ -341,7 +345,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             fg << "\n";
             for(int j = 0; j < Protingi.size(); j++)
             {
-                fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].M << endl;
+                fg << left << setw(11)<< Protingi.back().Vardas << setw(13) << Protingi.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi.back().M << endl;
             }
             fg.close();
     }
