@@ -6,6 +6,7 @@ void Rezultatai(vector <St> &s, int n);
 void VRik(vector <St> &s, int n);
 void Ekranas(vector <St> &s, int n, string VM);
 void ProtingiIrNe(vector <St> &s, int n, string VM);
+bool VardLig(const St &a, const St &b);
 void programa()
 {
     int n, k = 0;
@@ -28,17 +29,25 @@ void programa()
         }
         //Failu generavimas
         ofstream fk("Gen.txt");
+        auto start = std::chrono::high_resolution_clock::now(); // Paleisti
         fk << "Vardas Pavarde ND1 ND2 ND3 ND4 ND5 Egzaminas\n";
         for(int FK = 0; FK < n; FK++)
         {
             fk << "Vardas" << rand()%10+1 << " Pavarde" << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << " " << rand()%10+1 << endl;
         }
         fk.close();
+        auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
+        duration<double> diff = end-start; // Skirtumas (s)
+        cout << n <<" elementu generavimas uztruko: " << diff.count() << " s\n";
         const char FL[] = "Gen.txt";
         vector<St> s(n);
         skaitymas(s, FL, n);
         Rezultatai(s, n);
+        start = std::chrono::high_resolution_clock::now();
         VRik(s, n);
+        end = std::chrono::high_resolution_clock::now(); // Stabdyti
+        diff = end-start; // Skirtumas (s)
+        cout << n <<" elementu rikiavimas uztruko: " << diff.count() << " s\n";
         cout << "Ar norite rasyti i failus, ar i ekrana?\n";
         cin >> VM;
         while(!(VM=="Failus" || VM=="failus" || VM=="Ekrana" || VM=="ekrana"))
@@ -217,13 +226,12 @@ void Rezultatai(vector <St> &s, int n)
 }
 void VRik(vector <St> &s, int n)
 {
-    for (int i = 0; i <n-1; i++)
-    {
-        for (int j=i+1; j < n; j++)
-        {
-            if(s[j].Vardas < s[i].Vardas) swap(s[j], s[i]);
-        }
-    }
+    sort(s.begin(), s.end(), VardLig);
+}
+bool VardLig(const St &a, const St &b)
+{
+    if(a.Vardas == b.Vardas) return a.Pavarde < b.Pavarde;
+    return a.Vardas < b.Vardas;
 }
 void Ekranas(vector <St> &s, int n, string VM)
 {
@@ -263,6 +271,7 @@ void Ekranas(vector <St> &s, int n, string VM)
 }
 void ProtingiIrNe(vector <St> &s, int n, string VM)
 {
+    auto start = std::chrono::high_resolution_clock::now();
     ofstream fr("Vargsai.txt");
     ofstream fg("Protingi.txt");
     vector <St> Vargsai;
@@ -272,6 +281,10 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
         if(s[i].R<5) Vargsai.push_back(s[i]);
         else Protingi.push_back(s[i]);
     }
+    auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
+    duration<double> diff = end-start; // Skirtumas (s)
+    cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
+    start = std::chrono::high_resolution_clock::now();
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
     while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
@@ -303,8 +316,10 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
                 fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].R << endl;
             }
             fg.close();
+            end = std::chrono::high_resolution_clock::now(); // Stabdyti
+            diff = end-start; // Skirtumas (s)
+            cout << n <<" elementu rasimas i failus uztruko: " << diff.count() << " s\n";
     }
-
     if(VM== "Mediana" || VM == "mediana")
     {
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
@@ -329,8 +344,10 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
                 fg << left << setw(11)<< Protingi[j].Vardas << setw(13) << Protingi[j].Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi[j].M << endl;
             }
             fg.close();
+            end = std::chrono::high_resolution_clock::now(); // Stabdyti
+            diff = end-start; // Skirtumas (s)
+            cout << n <<" elementu rasimas i failus uztruko: " << diff.count() << " s\n";
     }
     //Spartos Analizei
-    double r = double(clock()*1.0/CLOCKS_PER_SEC);
-    cout << r << " sekundes" << endl;
+
 }

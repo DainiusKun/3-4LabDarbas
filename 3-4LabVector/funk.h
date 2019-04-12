@@ -6,6 +6,7 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <chrono>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -21,5 +22,6 @@ using std::left;
 using std::right;
 using std::fixed;
 using std::ofstream;
+using std::chrono::duration;
 void programa();
 #endif // FUNK_H_INCLUDED
