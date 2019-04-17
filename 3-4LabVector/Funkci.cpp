@@ -46,10 +46,14 @@ void programa()
         if(n==1000) apdorojimas(s,FL4,n);
         if(n==10000) apdorojimas(s,FL5,n);
         if(n==100000) apdorojimas(s,FL6,n);
+        auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
+        duration<double> diff = end-start; // Skirtumas (s)
+        cout << n <<" elementu apdorojimas uztruko: " << diff.count() << " s\n";
+        start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
         VRik(s, n);
-        //Spartos analize
-        double r = double(clock()*1.0/CLOCKS_PER_SEC);
-        cout << r << " sekundes" << endl;
+        end = std::chrono::high_resolution_clock::now(); // Pabaiga.
+        diff = end-start; // Skirtumas (s)
+        cout << n <<" elementu rikiavimas uztruko: " << diff.count() << " s\n";
         cout << "Ar norite rasyti i failus, ar i ekrana?\n";
         cin >> VM;
         while(!(VM=="Failus" || VM=="failus" || VM=="Ekrana" || VM=="ekrana"))
@@ -280,6 +284,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
     ofstream fg("Protingi.txt");
     list <St> Vargsai;
     list <St> Protingi;
+    auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
     for (int i = 0; i <n; i++)
     {
         if(s.back().R>=5)
@@ -293,6 +298,9 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             s.pop_back();
         }
     }
+    auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
+    duration<double> diff = end-start; // Skirtumas (s)
+    cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
     while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
@@ -300,6 +308,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
         cout << "Vidurki ar mediana?" << endl;
         cin >> VM;
     }
+    start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
     if(VM == "Vidurki" || VM == "vidurki")
     {
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
@@ -327,7 +336,6 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             }
             fg.close();
     }
-
     if(VM== "Mediana" || VM == "mediana")
     {
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
@@ -355,4 +363,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             }
             fg.close();
     }
+    end = std::chrono::high_resolution_clock::now(); // Pabaiga.
+    diff = end-start; // Skirtumas (s)
+    cout << n <<" elementu rasymas uztruko: " << diff.count() << " s\n";
 }
