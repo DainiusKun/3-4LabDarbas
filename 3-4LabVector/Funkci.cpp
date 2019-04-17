@@ -55,7 +55,7 @@ void programa()
             cout << "Failus ar ekrana?" << endl;
             cin >> VM;
         }
-        if(VM=="Ekrana")
+        if(VM=="Ekrana" || VM == "ekrana")
         {
             Ekranas(s, n, VM);
         }
