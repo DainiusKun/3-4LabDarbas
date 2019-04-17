@@ -40,6 +40,7 @@ void programa()
             cin.ignore(256,'\n');
             cin >> n;
         }
+        auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
         if(n==10) apdorojimas(s,FL2,n);
         if(n==100) apdorojimas(s,FL3,n);
         if(n==1000) apdorojimas(s,FL4,n);

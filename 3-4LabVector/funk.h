@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <list>
 #include <deque>
-#include <iterator>
+#include <chrono>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -26,6 +26,6 @@ using std::fixed;
 using std::ofstream;
 using std::list;
 using std::deque;
-using std::next;
+using std::chrono::duration;
 void programa();
 #endif // FUNK_H_INCLUDED
