@@ -347,6 +347,4 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             diff = end-start; // Skirtumas (s)
             cout << n <<" elementu rasimas i failus uztruko: " << diff.count() << " s\n";
     }
-    //Spartos Analizei
-
 }
