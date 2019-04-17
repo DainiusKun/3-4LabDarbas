@@ -1,6 +1,5 @@
 #include "funk.h"
 #include "struct.h"
-#include <time.h>
 void skaitymas(vector <St> &s, const char fd[], int n);
 void Rezultatai(vector <St> &s, int n);
 void VRik(vector <St> &s, int n);
