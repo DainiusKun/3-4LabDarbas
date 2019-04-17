@@ -1,10 +1,10 @@
 #include "funk.h"
 #include "struct.h"
-void apdorojimas(list <St> &s, const char FV[], int n);
+void apdorojimas(deque <St> &s, const char FV[], int n);
 void Rezultatai(St &temp);
-void VRik(list <St> &s, int n);
-void Ekranas(list <St> &s, int n, string VM);
-void ProtingiIrNe(list <St> &s, int n, string VM);
+void VRik(deque <St> &s, int n);
+void Ekranas(deque <St> &s, int n, string VM);
+void ProtingiIrNe(deque <St> &s, int n, string VM);
 bool VardTik(const St &a, const St &b);
 void programa()
 {
@@ -27,7 +27,7 @@ void programa()
             cin.clear();
             cin.ignore(256,'\n');
         }
-        list<St> s(n);
+        deque<St> s(n);
         const char FL2[] = "10.txt";
         const char FL3[] = "100.txt";
         const char FL4[] = "1000.txt";
@@ -84,7 +84,7 @@ void programa()
                 cin.clear();
                 cin.ignore(256,'\n');
             }
-            list <St> s(n);
+            deque <St> s(n);
             //Pagrindinis skaiciavimas
             for (int i = 0; i < n; i++)
             {
@@ -163,7 +163,7 @@ void programa()
         }
     }
 }
-void apdorojimas(list <St> &s, const char FV[], int n)
+void apdorojimas(deque <St> &s, const char FV[], int n)
 {
     ifstream fd(FV);
     if(fd.is_open())
@@ -187,7 +187,7 @@ void apdorojimas(list <St> &s, const char FV[], int n)
             k++;
             temp.Pavarde=vec[k];
             k++;
-            for(int j = 0; j < 5; j++)
+            for(int j = 0; j < vec.size()-3; j++)
             {
                 d=stod(vec[k]);
                 temp.ND.push_back(d);
@@ -200,6 +200,7 @@ void apdorojimas(list <St> &s, const char FV[], int n)
             s.push_back(temp);
             vec.clear();
             ss.clear();
+            temp.ND.clear();
         }
         fd.close();
     }
@@ -231,16 +232,16 @@ void Rezultatai(St &temp)
         }
     }
 }
-void VRik(list <St> &s, int n)
+void VRik(deque <St> &s, int n)
 {
-    s.sort(VardTik);
+    sort(s.begin(), s.end(), VardTik);
 }
 bool VardTik(const St &a, const St &b)
 {
     if(a.Vardas == b.Vardas) return a.Pavarde < b.Pavarde;
     return a.Vardas < b.Pavarde;
 }
-void Ekranas(list <St> &s, int n, string VM)
+void Ekranas(deque <St> &s, int n, string VM)
 {
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
@@ -278,12 +279,12 @@ void Ekranas(list <St> &s, int n, string VM)
         }
     }
 }
-void ProtingiIrNe(list <St> &s, int n, string VM)
+void ProtingiIrNe(deque <St> &s, int n, string VM)
 {
     ofstream fr("Vargsai.txt");
     ofstream fg("Protingi.txt");
-    list <St> Vargsai;
-    list <St> Protingi;
+    deque <St> Vargsai;
+    deque <St> Protingi;
     auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
     for (int i = 0; i <n; i++)
     {
