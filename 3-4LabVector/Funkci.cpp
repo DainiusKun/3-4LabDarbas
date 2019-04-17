@@ -1,8 +1,7 @@
 #include "funk.h"
 #include "struct.h"
-#include <time.h>
-void skaitymas(list <St> &s, const char fd[], int n);
-void Rezultatai(list <St> &s, int n);
+void apdorojimas(list <St> &s, const char FV[], int n);
+void Rezultatai(St &temp);
 void VRik(list <St> &s, int n);
 void Ekranas(list <St> &s, int n, string VM);
 void ProtingiIrNe(list <St> &s, int n, string VM);
@@ -41,12 +40,11 @@ void programa()
             cin.ignore(256,'\n');
             cin >> n;
         }
-        if(n==10) skaitymas(s,FL2,n);
-        if(n==100) skaitymas(s,FL3,n);
-        if(n==1000) skaitymas(s,FL4,n);
-        if(n==10000) skaitymas(s,FL5,n);
-        if(n==100000) skaitymas(s,FL6,n);
-        Rezultatai(s, n);
+        if(n==10) apdorojimas(s,FL2,n);
+        if(n==100) apdorojimas(s,FL3,n);
+        if(n==1000) apdorojimas(s,FL4,n);
+        if(n==10000) apdorojimas(s,FL5,n);
+        if(n==100000) apdorojimas(s,FL6,n);
         VRik(s, n);
         //Spartos analize
         double r = double(clock()*1.0/CLOCKS_PER_SEC);
@@ -58,7 +56,7 @@ void programa()
             cout << "Failus ar ekrana?" << endl;
             cin >> VM;
         }
-        if(VM=="Ekrana")
+        if(VM=="Ekrana" || VM == "ekrana")
         {
             Ekranas(s, n, VM);
         }
@@ -103,8 +101,8 @@ void programa()
                         temp.ND.push_back(rand()%10+1);
                     }
                     temp.E=rand()%10+1;
+                    Rezultatai(temp);
                     s.push_back(temp);
-                    Rezultatai(s, n);
                 }
                 else
                 {
@@ -151,8 +149,8 @@ void programa()
                             cin.ignore(256,'\n');
                             cin >> temp.E;
                         }
+                        Rezultatai(temp);
                         s.push_back(temp);
-                        Rezultatai(s, n);
                     }
                 }
             }
@@ -160,13 +158,13 @@ void programa()
         }
     }
 }
-void skaitymas(list <St> &s, const char FV[], int n)
+void apdorojimas(list <St> &s, const char FV[], int n)
 {
-    St temp;
     ifstream fd(FV);
     if(fd.is_open())
     {
-        int t = 0, k = 0;
+        St temp;
+        int k = 0;
         double d;
         string linija;
         string word = "";
@@ -192,7 +190,7 @@ void skaitymas(list <St> &s, const char FV[], int n)
             }
             d=stod(vec[k]);
             temp.E=d;
-            t++;
+            Rezultatai(temp);
             k=0;
             s.push_back(temp);
             vec.clear();
@@ -204,32 +202,27 @@ void skaitymas(list <St> &s, const char FV[], int n)
     {
         if(fd.fail())cout << "Neturite tinkamo failo.\n";
     }
-
 }
-void Rezultatai(list <St> &s, int n)
+void Rezultatai(St &temp)
 {
-    St temp;
-    for (int x = 0; x < n; x++)
+    for(int i = 0; i < temp.ND.size(); i++ )
     {
-        for(int y = 0; y < s.back().ND.size() ; y++)
+        temp.R = temp.R+temp.ND[i];
+    }
+    temp.R = temp.R/temp.ND.size()*0.4+temp.E*0.6;
+    if(temp.ND.size()==1)
+    {
+        temp.M=temp.ND[temp.ND.size()-1];
+    }
+    else
+    {
+        if(temp.ND.size()%2==0)
         {
-            temp.R=temp.R+s.back().ND[y];
-        }
-            s.back().R=s.back().R/s.back().ND.size()*0.4+s.back().E*0.6;
-        if(s.back().ND.size()==1)
-        {
-            s.back().M=s.back().ND[s.back().ND.size()-1];
+            temp.M=(temp.ND[temp.ND.size()-2/2-1]+temp.ND[temp.ND.size()-1/2])*0.5;
         }
         else
         {
-            if(s.back().ND.size()%2==0)
-            {
-                s.back().M=(s.back().ND[s.back().ND.size()-2/2-1]+s.back().ND[s.back().ND.size()-1/2])*0.5;
-            }
-            else
-            {
-                s.back().M=(s.back().ND[s.back().ND.size()-1/2-1]);
-            }
+            temp.M=(temp.ND[temp.ND.size()-1/2-1]);
         }
     }
 }
@@ -288,8 +281,16 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
     list <St> Protingi;
     for (int i = 0; i <n; i++)
     {
-        //if(s.back().R<5) Vargsai.push_back(s.back().);
-        //else Protingi.push_back(s.back);
+        if(s.back().R>=5)
+        {
+            Protingi.push_back(s.back());
+            s.pop_back();
+        }
+        else
+        {
+            Vargsai.push_back(s.back());
+            s.pop_back();
+        }
     }
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
@@ -309,6 +310,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             for(int j = 0; j < Vargsai.size(); j++)
             {
                 fr << left << setw(11)<< Vargsai.back().Vardas << setw(13) << Vargsai.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai.back().R << endl;
+                Vargsai.pop_back();
             }
             fr.close();
             fg << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
@@ -320,6 +322,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             for(int j = 0; j < Protingi.size(); j++)
             {
                 fg << left << setw(11)<< Protingi.back().Vardas << setw(13) << Protingi.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi.back().R << endl;
+                Protingi.pop_back();
             }
             fg.close();
     }
@@ -335,6 +338,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             for(int j = 0; j < Vargsai.size(); j++)
             {
                 fr << left << setw(11)<< Vargsai.back().Vardas << setw(13) << Vargsai.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai.back().M << endl;
+                Vargsai.pop_back();
             }
             fr.close();
             fg << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
@@ -346,6 +350,7 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             for(int j = 0; j < Protingi.size(); j++)
             {
                 fg << left << setw(11)<< Protingi.back().Vardas << setw(13) << Protingi.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi.back().M << endl;
+                Protingi.pop_back();
             }
             fg.close();
     }

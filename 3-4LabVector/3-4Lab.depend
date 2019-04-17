@@ -7,7 +7,7 @@
 1555008243 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\main.cpp
 	"funk.h"
 
-1555014324 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funk.h
+1555100123 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funk.h
 	<iostream>
 	<string>
 	<iomanip>
@@ -16,15 +16,15 @@
 	<algorithm>
 	<list>
 	<deque>
+	<iterator>
 
-1555058383 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\struct.h
+1555099213 c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\struct.h
 
 1554420438 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funk.cpp
 	"funk.h"
 	"struct.h"
 
-1555061959 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funkci.cpp
+1555501755 source:c:\users\daini\onedrive\documents\github\3-4labdarbas\3-4labvector\funkci.cpp
 	"funk.h"
 	"struct.h"
-	<time.h>
 

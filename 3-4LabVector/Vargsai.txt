@@ -1,2 +1,23 @@
 Vardas     Pavarde      Galutinis (Vid.) 
 ----------------------------------------
+Vardas1    Pavarde1                 4.92
+Vardas5    Pavarde5                 3.25
+Vardas8    Pavarde8                 3.15
+Vardas13   Pavarde13                4.95
+Vardas14   Pavarde14                3.18
+Vardas15   Pavarde15                3.18
+Vardas16   Pavarde16                4.35
+Vardas17   Pavarde17                4.95
+Vardas18   Pavarde18                2.59
+Vardas20   Pavarde20                3.23
+Vardas24   Pavarde24                3.22
+Vardas27   Pavarde27                3.26
+Vardas30   Pavarde30                4.46
+Vardas31   Pavarde31                2.65
+Vardas32   Pavarde32                2.61
+Vardas33   Pavarde33                3.24
+Vardas37   Pavarde37                3.83
+Vardas41   Pavarde41                3.91
+Vardas43   Pavarde43                2.74
+Vardas45   Pavarde45                3.97
+Vardas48   Pavarde48                2.78
