@@ -84,7 +84,7 @@ void programa()
                 cin.clear();
                 cin.ignore(256,'\n');
             }
-            vector <St> s(n);
+            vector <St> s;
             //Pagrindinis skaiciavimas
             for (int i = 0; i < n; i++)
             {
@@ -231,6 +231,7 @@ void Rezultatai(St &temp)
             temp.M=(temp.ND[temp.ND.size()-1/2-1]);
         }
     }
+    temp.M = temp.M/temp.ND.size()*0.4+temp.E*0.6;
 }
 void VRik(vector <St> &s, int n)
 {
@@ -299,7 +300,6 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
                 {
                     Vargsai.push_back(s[i]);
                     s.erase(s.begin()+i);
-                    i--;
                 }
             }
             auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
@@ -334,7 +334,7 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
             diff = end-start; // Skirtumas (s)
             cout << n <<" elementu rasymas uztruko: " << diff.count() << " s\n";
     }
-    if(VM== "Mediana" || VM == "mediana")
+    if(VM=="Mediana" || VM == "mediana")
     {
         auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
         for (int i = 0; i <n; i++)
@@ -355,7 +355,7 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
         fr << "\n";
         fr.fill(' ');
         fr << "\n";
-        for(int j = 0; j < Vargsai.size(); j++)
+        while(Vargsai.size()!=0)
         {
             fr << left << setw(11)<< Vargsai.back().Vardas << setw(13) << Vargsai.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai.back().M << endl;
             Vargsai.pop_back();
@@ -367,7 +367,7 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
         fg << "\n";
         fg.fill(' ');
         fg << "\n";
-        for(int j = 0; j < s.size(); j++)
+        while(s.size()!=0)
         {
             fg << left << setw(11)<< s.back().Vardas << setw(13) << s.back().Pavarde << setw(16) << right << setprecision(2) << fixed << s.back().M << endl;
             s.pop_back();
