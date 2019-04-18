@@ -270,20 +270,10 @@ void Ekranas(vector <St> &s, int n, string VM)
 }
 void ProtingiIrNe(vector <St> &s, int n, string VM)
 {
-    auto start = std::chrono::high_resolution_clock::now();
     ofstream fr("Vargsai.txt");
     ofstream fg("Protingi.txt");
     vector <St> Vargsai;
     vector <St> Protingi;
-    for (int i = 0; i <n; i++)
-    {
-        if(s[i].R<5) Vargsai.push_back(s[i]);
-        else Protingi.push_back(s[i]);
-    }
-    auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
-    duration<double> diff = end-start; // Skirtumas (s)
-    cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
-    start = std::chrono::high_resolution_clock::now();
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
     while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
@@ -293,6 +283,16 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
     }
     if(VM == "Vidurki" || VM == "vidurki")
     {
+        auto start = std::chrono::high_resolution_clock::now();
+        for (int i = 0; i <n; i++)
+        {
+        if(s[i].R<5) Vargsai.push_back(s[i]);
+        else Protingi.push_back(s[i]);
+        }
+        auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
+        duration<double> diff = end-start; // Skirtumas (s)
+        cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
+        start = std::chrono::high_resolution_clock::now();
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fr.fill('-');
             fr.width(41);
@@ -321,6 +321,16 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
     }
     if(VM== "Mediana" || VM == "mediana")
     {
+        auto start = std::chrono::high_resolution_clock::now();
+        for (int i = 0; i <n; i++)
+        {
+        if(s[i].M<5) Vargsai.push_back(s[i]);
+        else Protingi.push_back(s[i]);
+        }
+        auto end = std::chrono::high_resolution_clock::now(); // Stabdyti
+        duration<double> diff = end-start; // Skirtumas (s)
+        cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
+        start = std::chrono::high_resolution_clock::now();
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fr.fill('-');
             fr.width(41);
