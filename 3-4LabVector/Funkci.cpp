@@ -285,23 +285,6 @@ void ProtingiIrNe(deque <St> &s, int n, string VM)
     ofstream fg("Protingi.txt");
     deque <St> Vargsai;
     deque <St> Protingi;
-    auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
-    for (int i = 0; i <n; i++)
-    {
-        if(s.back().R>=5)
-        {
-            Protingi.push_back(s.back());
-            s.pop_back();
-        }
-        else
-        {
-            Vargsai.push_back(s.back());
-            s.pop_back();
-        }
-    }
-    auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
-    duration<double> diff = end-start; // Skirtumas (s)
-    cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
     while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
@@ -309,9 +292,26 @@ void ProtingiIrNe(deque <St> &s, int n, string VM)
         cout << "Vidurki ar mediana?" << endl;
         cin >> VM;
     }
-    start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
     if(VM == "Vidurki" || VM == "vidurki")
     {
+        auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
+        for (int i = 0; i <n; i++)
+        {
+            if(s.back().R>=5)
+            {
+                Protingi.push_back(s.back());
+                s.pop_back();
+            }
+            else
+            {
+                Vargsai.push_back(s.back());
+                s.pop_back();
+            }
+        }
+        auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
+        duration<double> diff = end-start; // Skirtumas (s)
+        cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
+        start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fr.fill('-');
             fr.width(41);
@@ -336,9 +336,30 @@ void ProtingiIrNe(deque <St> &s, int n, string VM)
                 Protingi.pop_back();
             }
             fg.close();
+        end = std::chrono::high_resolution_clock::now(); // Pabaiga.
+        diff = end-start; // Skirtumas (s)
+        cout << n <<" elementu rasymas uztruko: " << diff.count() << " s\n";
     }
     if(VM== "Mediana" || VM == "mediana")
     {
+        auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
+        for (int i = 0; i <n; i++)
+        {
+            if(s.back().M>=5)
+            {
+                Protingi.push_back(s.back());
+                s.pop_back();
+            }
+            else
+            {
+                Vargsai.push_back(s.back());
+                s.pop_back();
+            }
+        }
+        auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
+        duration<double> diff = end-start; // Skirtumas (s)
+        cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
+        start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fr.fill('-');
             fr.width(41);
@@ -363,8 +384,8 @@ void ProtingiIrNe(deque <St> &s, int n, string VM)
                 Protingi.pop_back();
             }
             fg.close();
+        end = std::chrono::high_resolution_clock::now(); // Pabaiga.
+        diff = end-start; // Skirtumas (s)
+        cout << n <<" elementu rasymas uztruko: " << diff.count() << " s\n";
     }
-    end = std::chrono::high_resolution_clock::now(); // Pabaiga.
-    diff = end-start; // Skirtumas (s)
-    cout << n <<" elementu rasymas uztruko: " << diff.count() << " s\n";
 }
