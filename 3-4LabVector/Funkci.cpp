@@ -27,7 +27,7 @@ void programa()
             cin.clear();
             cin.ignore(256,'\n');
         }
-        deque<St> s(n);
+        deque<St> s;
         const char FL2[] = "10.txt";
         const char FL3[] = "100.txt";
         const char FL4[] = "1000.txt";
@@ -260,8 +260,8 @@ void Ekranas(deque <St> &s, int n, string VM)
         cout << "\n";
         for(int j = 0; j < n; j++)
         {
-            cout << left << setw(11)<< s.back().Vardas << setw(13) << s.back().Pavarde << setw(16) << right << setprecision(2) << fixed << s.back().R << endl;
-            s.pop_back();
+            cout << left << setw(11)<< s.front().Vardas << setw(13) << s.front().Pavarde << setw(16) << right << setprecision(2) << fixed << s.front().R << endl;
+            s.pop_front();
         }
     }
     if(VM=="Mediana" || VM=="mediana")
@@ -274,8 +274,8 @@ void Ekranas(deque <St> &s, int n, string VM)
         cout << "\n";
         for(int j = 0; j < n; j++)
         {
-            cout << left << setw(11)<< s.back().Vardas << setw(13) << s.back().Pavarde << setw(16) << right << setprecision(2) << fixed << s.back().M << endl;
-            s.pop_back();
+            cout << left << setw(11)<< s.front().Vardas << setw(13) << s.front().Pavarde << setw(16) << right << setprecision(2) << fixed << s.front().M << endl;
+            s.pop_front();
         }
     }
 }
