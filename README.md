@@ -22,4 +22,11 @@ Programa naudoja nuskaitymą iš failų ir duomenų įrašymą ranka.
 > Visi rezutatai pateikiami ekrane surikiuoti abėcėlės tvarka.
 >[Spartos analizė](https://github.com/DainiusKun/3-4LabDarbas/blob/1.0V/3-4LabVector/Spartos%20analize.xlsx)
  >Laikas sekundėmis
+ ![](https://i.imgur.com/aJknwv3.png)
+ ![](https://i.imgur.com/X97Julk.png)
+ ![](https://i.imgur.com/dcfJ6Cj.png)
+ ![](https://i.imgur.com/N4psY2k.png)
+ >Duomenys nebūtinai tose pačiose sąlygose.
 >[Grįžti į pagrindinį](https://github.com/DainiusKun/3-4LabDarbas/tree/master)
+ ## Įrašymo instrukcija.
+ 1. [Atsisiunčiate programą paspaudę šitą tektą](https://github.com/DainiusKun/3-4LabDarbas/archive/1.0V.zip)
