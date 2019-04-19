@@ -29,8 +29,8 @@ Programa naudoja nuskaitymą iš failų ir duomenų įrašymą ranka.
  >Duomenys nebūtinai tose pačiose sąlygose.
 >[Grįžti į pagrindinį](https://github.com/DainiusKun/3-4LabDarbas/tree/master)
  ## Įrašymo instrukcija.
- 1. [Atsisiunčiate programą paspaudę šitą tektą](https://github.com/DainiusKun/3-4LabDarbas/archive/1.0V.zip)
- 2. Atisiuntę 3-4LabDarbas-1.0V.zip spaudžiate dešinį pelės klavišą ant failo, tada „Extract files...“
+ 1. [Atsisiunčiate programą paspaudę šitą tektą.](https://github.com/DainiusKun/3-4LabDarbas/archive/1.0V.zip)
+ 2. Atisiuntę 3-4LabDarbas-1.0V.zip spaudžiate dešinį pelės klavišą ant failo, tada „Extract files...“.
 ![](https://i.imgur.com/mlZ3Crs.png)
  3. Pasirenkate nuorodą, kur norėtumėte laikyti failus ir spaudžiate „OK“.
  ![](https://i.imgur.com/E3G7ueg.png)
