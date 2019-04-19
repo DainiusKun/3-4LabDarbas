@@ -11,9 +11,9 @@ Programa naudoja nuskaitymą iš failų ir duomenų įrašymą ranka.
 #### Programa, kai duomenys įrašomi ranka:
 1. Programa paklausia Jūsų koks studentų kiekis.
 2. Programa paklausia kokie studentų vardai ir pavardės.
-3.1. Programa paklausia ar norite atsitiktinių rezultatų, ar ne;
+3. Programa paklausia ar norite atsitiktinių rezultatų, ar ne;
 > Tai atliekama naudojantis rand(); funkcija.
-3.2. Jeigu nenorite atsitiktinių rezultatų, duomenys dinamiškai įrašomi.
+3. Jeigu nenorite atsitiktinių rezultatų, duomenys dinamiškai įrašomi.
 4. Įrašomi egzaminų rezultatai.
 5. Programa apskaičiuoja rezultatą pagal medianą ir rezultatą pagal vidurki.
 > Mediana paskaičiuojama su sort <algorithm> funkcija.
