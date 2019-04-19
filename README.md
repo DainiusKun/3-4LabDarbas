@@ -29,4 +29,12 @@ Programa naudoja nuskaitymą iš failų ir duomenų įrašymą ranka.
  >Duomenys nebūtinai tose pačiose sąlygose.
 >[Grįžti į pagrindinį](https://github.com/DainiusKun/3-4LabDarbas/tree/master)
  ## Įrašymo instrukcija.
- 1. [Atsisiunčiate programą paspaudę šitą tektą](https://github.com/DainiusKun/3-4LabDarbas/archive/1.0V.zip)
+ 1. [Atsisiunčiate programą paspaudę šitą tektą.](https://github.com/DainiusKun/3-4LabDarbas/archive/1.0V.zip)
+ 2. Atisiuntę 3-4LabDarbas-1.0V.zip spaudžiate dešinį pelės klavišą ant failo, tada „Extract files...“.
+![](https://i.imgur.com/mlZ3Crs.png)
+ 3. Pasirenkate nuorodą, kur norėtumėte laikyti failus ir spaudžiate „OK“.
+ ![](https://i.imgur.com/E3G7ueg.png)
+ 4. Atidarote aplankalą „3-4LabDarbas-1.0V“, tada „3-4LabVector“.
+ >Čia randate failus. Priklausomai kokius norite turėti duomenis, tokius galite surašyti pagal šabloną į 10.txt, 100.txt, 1000.txt ir t.t
+ 5. Galiausiai paleidžiate programą paspausdami „3-4Lab.exe“.
+ ![](https://i.imgur.com/aRtA7RG.png)
