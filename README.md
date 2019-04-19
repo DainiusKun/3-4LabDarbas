@@ -20,9 +20,6 @@ Programa naudoja nuskaitymą iš failų ir duomenų įrašymą ranka.
 6. Studentai surušiuojami pagal vardą abėcėlės tvarka.
 7. Galiausiai programa paklausia ar norite pamatyti mediana, ar vidurkį.
 > Visi rezutatai pateikiami ekrane surikiuoti abėcėlės tvarka.
->[Spartos analizė](https://github.com/DainiusKun/3-4LabDarbas/blob/0.4V/3-4LabVector/Spartos%20analize.xlsx)
+>[Spartos analizė](https://github.com/DainiusKun/3-4LabDarbas/blob/1.0V/3-4LabVector/Spartos%20analize.xlsx)
  >Laikas sekundėmis
- ![](https://i.imgur.com/bNqCgPi.png)
->[Grįžti į pagrindinį](https://github.com/DainiusKun/3-4LabDarbas/tree/master)
->[Spartos analizė](https://github.com/DainiusKun/3-4LabDarbas/blob/0.4V/3-4LabVector/Spartos%20analize.xlsx)
 >[Grįžti į pagrindinį](https://github.com/DainiusKun/3-4LabDarbas/tree/master)
