@@ -60,7 +60,7 @@ void programa()
         }
         else
         {
-            if(VM =="Failus" || VM == "faila")
+            if(VM =="Failus" || VM == "failus")
             {
                 ProtingiIrNe(s, n, VM);
             }
