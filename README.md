@@ -29,3 +29,4 @@ Programa naudoja nuskaitymą iš failų ir duomenų įrašymą ranka.
  >Duomenys nebūtinai tose pačiose sąlygose.
 >[Grįžti į pagrindinį](https://github.com/DainiusKun/3-4LabDarbas/tree/master)
  ## Įrašymo instrukcija.
+ 1. [Atsisiunčiate programą paspaudę šitą tektą](https://github.com/DainiusKun/3-4LabDarbas/archive/1.0V.zip)
