@@ -1,10 +1,10 @@
 #include "funk.h"
 #include "struct.h"
-void apdorojimas(vector <St> &s, const char FV[], int n);
+void apdorojimas(list <St> &s, const char FV[], int n);
 void Rezultatai(St &temp);
-void VRik(vector <St> &s, int n);
-void Ekranas(vector <St> &s, int n, string VM);
-void ProtingiIrNe(vector <St> &s, int n, string VM);
+void VRik(list <St> &s, int n);
+void Ekranas(list <St> &s, int n, string VM);
+void ProtingiIrNe(list <St> &s, int n, string VM);
 bool VardTik(const St &a, const St &b);
 void programa()
 {
@@ -27,7 +27,7 @@ void programa()
             cin.clear();
             cin.ignore(256,'\n');
         }
-        vector<St> s;
+        list<St> s;
         const char FL2[] = "10.txt";
         const char FL3[] = "100.txt";
         const char FL4[] = "1000.txt";
@@ -84,7 +84,7 @@ void programa()
                 cin.clear();
                 cin.ignore(256,'\n');
             }
-            vector <St> s;
+            list <St> s;
             //Pagrindinis skaiciavimas
             for (int i = 0; i < n; i++)
             {
@@ -163,7 +163,7 @@ void programa()
         }
     }
 }
-void apdorojimas(vector <St> &s, const char FV[], int n)
+void apdorojimas(list <St> &s, const char FV[], int n)
 {
     ifstream fd(FV);
     if(fd.is_open())
@@ -233,16 +233,16 @@ void Rezultatai(St &temp)
     }
     temp.M = temp.M/temp.ND.size()*0.4+temp.E*0.6;
 }
-void VRik(vector <St> &s, int n)
+void VRik(list <St> &s, int n)
 {
-    sort(s.begin(), s.end(), VardTik);
+    s.sort(VardTik);
 }
 bool VardTik(const St &a, const St &b)
 {
     if(a.Vardas == b.Vardas) return a.Pavarde < b.Pavarde;
     return a.Vardas < b.Pavarde;
 }
-void Ekranas(vector <St> &s, int n, string VM)
+void Ekranas(list <St> &s, int n, string VM)
 {
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
@@ -259,9 +259,10 @@ void Ekranas(vector <St> &s, int n, string VM)
         cout << "\n";
         cout.fill(' ');
         cout << "\n";
-        for(int j = 0; j < 100; j++)
+        while(s.size()!=0)
         {
-            cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].R << endl;
+            cout << left << setw(11)<< s.back().Vardas << setw(13) << s.back().Pavarde << setw(16) << right << setprecision(2) << fixed << s.back().M << endl;
+            s.pop_back();
         }
     }
     if(VM=="Mediana" || VM=="mediana")
@@ -272,18 +273,19 @@ void Ekranas(vector <St> &s, int n, string VM)
         cout << "\n";
         cout.fill(' ');
         cout << "\n";
-        for(int j = 0; j < n; j++)
+        while(s.size()!=0)
         {
-            cout << left << setw(11)<< s[j].Vardas << setw(13) << s[j].Pavarde << setw(16) << right << setprecision(2) << fixed << s[j].M << endl;
+            cout << left << setw(11)<< s.back().Vardas << setw(13) << s.back().Pavarde << setw(16) << right << setprecision(2) << fixed << s.back().M << endl;
+            s.pop_back();
         }
     }
 }
-void ProtingiIrNe(vector <St> &s, int n, string VM)
+void ProtingiIrNe(list <St> &s, int n, string VM)
 {
     ofstream fr("Vargsai.txt");
     ofstream fg("Protingi.txt");
-    vector <St> Vargsai;
-    //vector <St> Protingi;
+    list <St> Vargsai;
+    //list <St> Protingi;
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
     while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
@@ -294,12 +296,18 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
     if(VM == "Vidurki" || VM == "vidurki")
     {
             auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
-            for (int i = 0; i <n; i++)
+            for (int i = 0; i <s.size(); i++)
             {
-                if(s[i].R<5)
+                if(s.front().R<5)
                 {
-                    Vargsai.push_back(s[i]);
-                    s.erase(s.begin()+i);
+                    Vargsai.push_back(s.front());
+                    s.pop_front();
+                    i--;
+                }
+                else
+                {
+                    s.push_back(s.front());
+                    s.pop_front();
                 }
             }
             auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
@@ -337,12 +345,18 @@ void ProtingiIrNe(vector <St> &s, int n, string VM)
     if(VM=="Mediana" || VM == "mediana")
     {
         auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
-        for (int i = 0; i <n; i++)
+        for (int i = 0; i <s.size(); i++)
         {
-            if(s[i].M<5)
+            if(s.front().M<5)
             {
-                Vargsai.push_back(s[i]);
-                s.erase(s.begin()+i);
+                Vargsai.push_back(s.front());
+                s.pop_front();
+                i--;
+            }
+            else
+            {
+                s.push_back(s.front());
+                s.pop_front();
             }
         }
         auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
