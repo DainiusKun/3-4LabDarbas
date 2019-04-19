@@ -2,7 +2,7 @@
 #include "struct.h"
 void apdorojimas(deque <St> &s, const char FV[], int n);
 void Rezultatai(St &temp);
-void VRik(deque <St> &s, int n);
+void VRik(deque <St> &s);
 void Ekranas(deque <St> &s, int n, string VM);
 void ProtingiIrNe(deque <St> &s, int n, string VM);
 bool VardTik(const St &a, const St &b);
@@ -50,7 +50,7 @@ void programa()
         duration<double> diff = end-start; // Skirtumas (s)
         cout << n <<" elementu apdorojimas uztruko: " << diff.count() << " s\n";
         start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
-        VRik(s, n);
+        VRik(s);
         end = std::chrono::high_resolution_clock::now(); // Pabaiga.
         diff = end-start; // Skirtumas (s)
         cout << n <<" elementu rikiavimas uztruko: " << diff.count() << " s\n";
@@ -232,7 +232,7 @@ void Rezultatai(St &temp)
         }
     }
 }
-void VRik(deque <St> &s, int n)
+void VRik(deque <St> &s)
 {
     sort(s.begin(), s.end(), VardTik);
 }
@@ -311,6 +311,8 @@ void ProtingiIrNe(deque <St> &s, int n, string VM)
         auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
         duration<double> diff = end-start; // Skirtumas (s)
         cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
+        VRik(Vargsai);
+        VRik(Protingi);
         start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fr.fill('-');
@@ -359,6 +361,8 @@ void ProtingiIrNe(deque <St> &s, int n, string VM)
         auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
         duration<double> diff = end-start; // Skirtumas (s)
         cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
+        VRik(Vargsai);
+        VRik(Protingi);
         start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fr.fill('-');
