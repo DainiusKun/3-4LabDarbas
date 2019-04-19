@@ -67,7 +67,7 @@ void programa()
         }
         else
         {
-            if(VM =="Failus" || VM == "faila")
+            if(VM =="Failus" || VM == "failus")
             {
                 ProtingiIrNe(s, n, VM);
             }
@@ -318,7 +318,7 @@ void ProtingiIrNe(deque <St> &s, int n, string VM)
             fr << "\n";
             fr.fill(' ');
             fr << "\n";
-            for(int j = 0; j < Vargsai.size(); j++)
+            while(Vargsai.size()!=0)
             {
                 fr << left << setw(11)<< Vargsai.back().Vardas << setw(13) << Vargsai.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai.back().R << endl;
                 Vargsai.pop_back();
@@ -330,7 +330,7 @@ void ProtingiIrNe(deque <St> &s, int n, string VM)
             fg << "\n";
             fg.fill(' ');
             fg << "\n";
-            for(int j = 0; j < Protingi.size(); j++)
+            while(Protingi.size()!=0)
             {
                 fg << left << setw(11)<< Protingi.back().Vardas << setw(13) << Protingi.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi.back().R << endl;
                 Protingi.pop_back();
@@ -366,7 +366,7 @@ void ProtingiIrNe(deque <St> &s, int n, string VM)
             fr << "\n";
             fr.fill(' ');
             fr << "\n";
-            for(int j = 0; j < Vargsai.size(); j++)
+            while(Vargsai.size()!=0)
             {
                 fr << left << setw(11)<< Vargsai.back().Vardas << setw(13) << Vargsai.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Vargsai.back().M << endl;
                 Vargsai.pop_back();
@@ -378,7 +378,7 @@ void ProtingiIrNe(deque <St> &s, int n, string VM)
             fg << "\n";
             fg.fill(' ');
             fg << "\n";
-            for(int j = 0; j < Protingi.size(); j++)
+            while(Protingi.size()!=0)
             {
                 fg << left << setw(11)<< Protingi.back().Vardas << setw(13) << Protingi.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi.back().M << endl;
                 Protingi.pop_back();
