@@ -1,11 +1,13 @@
 #include "funk.h"
 #include "struct.h"
-void apdorojimas(list <St> &s, const char FV[], int n);
+void apdorojimas(vector <St> &s, const char FV[], int n);
 void Rezultatai(St &temp);
-void VRik(list <St> &s, int n);
-void Ekranas(list <St> &s, int n, string VM);
-void ProtingiIrNe(list <St> &s, int n, string VM);
+void VRik(vector <St> &s);
+void Ekranas(vector <St> &s, int n, string VM);
+void ProtingiIrNe(vector <St> &s, int n, string VM);
 bool VardTik(const St &a, const St &b);
+void Did(string &VM);
+void Teisingas(auto& k);
 void programa()
 {
     int n, k = 0;
@@ -13,21 +15,23 @@ void programa()
     string VM;
     cout << "Ar norite skaityti duomenis is failo, ar norite irasyti ranka?\n";
     cin >> VM;
-    while(!(VM=="Failo" || VM=="failo" || VM=="Ranka" || VM=="ranka"))
+    Did(VM);
+    while(!(VM=="FAILO" || VM=="RANKA"))
     {
         cout << "Failo ar ranka?" << endl;
         cin >> VM;
+        Did(VM);
     }
-    if(VM=="Failo" || VM == "failo")
+    if(VM=="FAILO")
     {
         cout << "Kiek studentu grupeje? 10, 100, 1000, 10000 ar 100000?\n";
-        while(!(cin >> n))
+        while(!(cin>>n))
         {
             cout << "10, 100, 1000, 10000 ar 100000?\n";
             cin.clear();
             cin.ignore(256,'\n');
         }
-        list<St> s;
+        vector<St> s;
         const char FL2[] = "10.txt";
         const char FL3[] = "100.txt";
         const char FL4[] = "1000.txt";
@@ -50,32 +54,24 @@ void programa()
         duration<double> diff = end-start; // Skirtumas (s)
         cout << n <<" elementu apdorojimas uztruko: " << diff.count() << " s\n";
         start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
-        VRik(s, n);
+        VRik(s);
         end = std::chrono::high_resolution_clock::now(); // Pabaiga.
         diff = end-start; // Skirtumas (s)
         cout << n <<" elementu rikiavimas uztruko: " << diff.count() << " s\n";
         cout << "Ar norite rasyti i failus, ar i ekrana?\n";
         cin >> VM;
-        while(!(VM=="Failus" || VM=="failus" || VM=="Ekrana" || VM=="ekrana"))
+        Did(VM);
+        while(!(VM=="FAILUS" || VM=="EKRANA"))
         {
             cout << "Failus ar ekrana?" << endl;
             cin >> VM;
+            Did(VM);
         }
-        if(VM=="Ekrana" || VM == "ekrana")
-        {
-            Ekranas(s, n, VM);
-        }
-        else
-        {
-            if(VM =="Failus" || VM == "failus")
-            {
-                ProtingiIrNe(s, n, VM);
-            }
-        }
+        (VM=="EKRANA")?Ekranas(s, n, VM):ProtingiIrNe(s, n, VM);
     }
     else
     {
-        if(VM=="Ranka" || VM == "ranka")
+        if(VM=="RANKA")
         {
             cout << "Kiek yra studentu Jusu grupeje?\n";
             while(!(cin >> n))
@@ -84,8 +80,8 @@ void programa()
                 cin.clear();
                 cin.ignore(256,'\n');
             }
-            list <St> s;
-            //Pagrindinis skaiciavimas
+            vector <St> s;
+            //Rankinis skaiciavimas
             for (int i = 0; i < n; i++)
             {
                 cout << "Irasykite " << i+1 << "-ojo studento varda ir pavarde.\n";
@@ -93,12 +89,14 @@ void programa()
                 cin >> temp.Pavarde;
                 cout << "Ar norite atsitiktiniu rezultatu?\n";
                 cin >> VM;
-                while(!(VM=="Taip" || VM=="taip" || VM=="Ne" || VM=="ne"))
+                Did(VM);
+                while(!(VM=="TAIP" || VM=="NE"))
                 {
-                cout << "Taip ar ne?" << endl;
-                cin >> VM;
+                    cout << "Taip ar ne?" << endl;
+                    cin >> VM;
+                    Did(VM);
                 }
-                if(VM=="Taip" || VM=="taip")
+                if(VM=="TAIP")
                 {
                     k=rand();
                     for(int g = 0; g < k; g++)
@@ -111,48 +109,31 @@ void programa()
                 }
                 else
                 {
-                    if(VM=="Ne" || VM =="ne")
+                    if(VM=="NE")
                     {
                         cout << "Irasykite " << i+1 << "-ojo studento namu darbu rezultatus. Irase 0 arba skaiciu >10 baigsis ivedimas.\n";
-                        while(!(cin >> k))
-                        {
-                            cout << "Teisingai irasykite namu darbu rezultatus." << endl;
-                            cin.clear();
-                            cin.ignore(256,'\n');
-                        }
+                        Teisingas(k);
                         while(k>0 && k < 11)
                         {
                             temp.ND.push_back(k);
-                            cin >> k;
-                            while(!(cin))
-                            {
-                                cout << "Teisingai irasykite namu darbu rezultatus." << endl;
-                                cin.clear();
-                                cin.ignore(256,'\n');
-                            }
+                            Teisingas(k);
                         }
                         while(temp.ND.size()==0)
                         {
                             while(!(k>0 && k < 11))
                             {
                                 cout << "Irasykite bent viena rezultata." << endl;
-                                cin >> k;
+                                Teisingas(k);
                             }
                             temp.ND.push_back(k);
                         }
                         cout << "Irasykite " << i+1 << "-ojo studento egzamino rezultata.\n";
-                        while(!(cin >> temp.E))
+                        while(!(cin >> temp.E) || (temp.E<0 || temp.E>10))
                         {
                             cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultata." << endl;
                             cin.clear();
                             cin.ignore(256,'\n');
-                        }
-                        while(temp.E<0 || temp.E>10)
-                        {
-                            cout << "Teisingai irasykite " << i+1 << "-ojo studento egzamino rezultata." << endl;
-                            cin.clear();
-                            cin.ignore(256,'\n');
-                            cin >> temp.E;
+                            Teisingas(temp.E);
                         }
                         Rezultatai(temp);
                         s.push_back(temp);
@@ -163,7 +144,7 @@ void programa()
         }
     }
 }
-void apdorojimas(list <St> &s, const char FV[], int n)
+void apdorojimas(vector <St> &s, const char FV[], int n)
 {
     ifstream fd(FV);
     if(fd.is_open())
@@ -233,25 +214,27 @@ void Rezultatai(St &temp)
     }
     temp.M = temp.M/temp.ND.size()*0.4+temp.E*0.6;
 }
-void VRik(list <St> &s, int n)
+void VRik(vector <St> &s)
 {
-    s.sort(VardTik);
+    sort(s.begin(), s.end(), VardTik);
 }
 bool VardTik(const St &a, const St &b)
 {
     if(a.Vardas == b.Vardas) return a.Pavarde < b.Pavarde;
     return a.Vardas < b.Pavarde;
 }
-void Ekranas(list <St> &s, int n, string VM)
+void Ekranas(vector <St> &s, int n, string VM)
 {
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
-    while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
+    Did(VM);
+    while(!(VM=="VIDURKI" || VM=="MEDIANA"))
     {
         cout << "Vidurki ar mediana?" << endl;
         cin >> VM;
+        Did(VM);
     }
-    if(VM=="Vidurki" || VM=="vidurki")
+    if(VM=="VIDURKI")
     {
         cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
         cout.fill('-');
@@ -265,7 +248,7 @@ void Ekranas(list <St> &s, int n, string VM)
             s.pop_back();
         }
     }
-    if(VM=="Mediana" || VM=="mediana")
+    if(VM=="MEDIANA")
     {
         cout << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Med.)";
         cout.fill('-');
@@ -280,39 +263,34 @@ void Ekranas(list <St> &s, int n, string VM)
         }
     }
 }
-void ProtingiIrNe(list <St> &s, int n, string VM)
+void ProtingiIrNe(vector <St> &s, int n, string VM)
 {
     ofstream fr("Vargsai.txt");
     ofstream fg("Protingi.txt");
-    list <St> Vargsai;
-    //list <St> Protingi;
+    vector <St> Vargsai;
+    vector <St> Protingi;
     cout << "Ka noretumete pamatyti,rezultatus pagal pazymiu vidurki ar mediana?\n";
     cin >> VM;
-    while(!(VM=="Vidurki" || VM=="vidurki" || VM=="Mediana" || VM=="mediana"))
+    Did(VM);
+    while(!(VM=="VIDURKI" || VM=="MEDIANA"))
     {
         cout << "Vidurki ar mediana?" << endl;
         cin >> VM;
+        Did(VM);
     }
-    if(VM == "Vidurki" || VM == "vidurki")
+    if(VM == "VIDURKI")
     {
             auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
-            for (int i = 0; i <s.size(); i++)
+            while(s.size()!=0)
             {
-                if(s.front().R<5)
-                {
-                    Vargsai.push_back(s.front());
-                    s.pop_front();
-                    i--;
-                }
-                else
-                {
-                    s.push_back(s.front());
-                    s.pop_front();
-                }
+                (s.back().R>=5)?Protingi.push_back(s.back()):Vargsai.push_back(s.back());
+                s.pop_back();
             }
             auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
             duration<double> diff = end-start; // Skirtumas (s)
             cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
+            VRik(Vargsai);
+            VRik(Protingi);
             start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
             fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
             fr.fill('-');
@@ -332,35 +310,28 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
             fg << "\n";
             fg.fill(' ');
             fg << "\n";
-            while(s.size()!=0)
+            while(Protingi.size()!=0)
             {
-                fg << left << setw(11)<< s.back().Vardas << setw(13) << s.back().Pavarde << setw(16) << right << setprecision(2) << fixed << s.back().R << endl;
-                s.pop_back();
+                fg << left << setw(11)<< Protingi.back().Vardas << setw(13) << Protingi.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi.back().R << endl;
+                Protingi.pop_back();
             }
             fg.close();
             end = std::chrono::high_resolution_clock::now(); // Pabaiga.
             diff = end-start; // Skirtumas (s)
             cout << n <<" elementu rasymas uztruko: " << diff.count() << " s\n";
     }
-    if(VM=="Mediana" || VM == "mediana")
+    if(VM == "MEDIANA")
     {
         auto start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
-        for (int i = 0; i <s.size(); i++)
+        while(s.size()!=0)
         {
-            if(s.front().M<5)
-            {
-                Vargsai.push_back(s.front());
-                s.pop_front();
-                i--;
-            }
-            else
-            {
-                s.push_back(s.front());
-                s.pop_front();
-            }
+            (s.back().M>=5)?Protingi.push_back(s.back()):Vargsai.push_back(s.back());
+            s.pop_back();
         }
         auto end = std::chrono::high_resolution_clock::now(); // Pabaiga.
         duration<double> diff = end-start; // Skirtumas (s)
+        VRik(Vargsai);
+        VRik(Protingi);
         start = std::chrono::high_resolution_clock::now(); // Spartos analizes pradzia
         cout << n <<" elementu rusiavimas uztruko: " << diff.count() << " s\n";
         fr << left << setw(11)<< "Vardas" << setw(13) << "Pavarde" << setw(17) << "Galutinis (Vid.)";
@@ -381,14 +352,27 @@ void ProtingiIrNe(list <St> &s, int n, string VM)
         fg << "\n";
         fg.fill(' ');
         fg << "\n";
-        while(s.size()!=0)
+        while(Protingi.size()!=0)
         {
-            fg << left << setw(11)<< s.back().Vardas << setw(13) << s.back().Pavarde << setw(16) << right << setprecision(2) << fixed << s.back().M << endl;
-            s.pop_back();
+            fg << left << setw(11)<< Protingi.back().Vardas << setw(13) << Protingi.back().Pavarde << setw(16) << right << setprecision(2) << fixed << Protingi.back().M << endl;
+            Protingi.pop_back();
         }
         fg.close();
         end = std::chrono::high_resolution_clock::now(); // Pabaiga.
         diff = end-start; // Skirtumas (s)
         cout << n <<" elementu rasymas uztruko: " << diff.count() << " s\n";
+    }
+}
+void Did(string &VM)
+{
+  transform(VM.begin(), VM.end(), VM.begin(), ::toupper);
+}
+void Teisingas(auto& k)
+{
+    while(!(cin>>k))
+    {
+        cout << "Teisingai irasykite duomenis." << endl;
+        cin.clear();
+        cin.ignore(256,'\n');
     }
 }

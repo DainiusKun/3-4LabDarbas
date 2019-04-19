@@ -25,10 +25,6 @@ using std::left;
 using std::right;
 using std::fixed;
 using std::ofstream;
-using std::list;
-using std::deque;
 using std::chrono::duration;
-using std::next;
-using std::for_each;
 void programa();
 #endif // FUNK_H_INCLUDED
