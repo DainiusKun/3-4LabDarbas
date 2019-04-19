@@ -258,7 +258,7 @@ void Ekranas(deque <St> &s, int n, string VM)
         cout << "\n";
         cout.fill(' ');
         cout << "\n";
-        for(int j = 0; j < n; j++)
+        while(s.size()!=0)
         {
             cout << left << setw(11)<< s.front().Vardas << setw(13) << s.front().Pavarde << setw(16) << right << setprecision(2) << fixed << s.front().R << endl;
             s.pop_front();
@@ -272,7 +272,7 @@ void Ekranas(deque <St> &s, int n, string VM)
         cout << "\n";
         cout.fill(' ');
         cout << "\n";
-        for(int j = 0; j < n; j++)
+        while(s.size()!=0)
         {
             cout << left << setw(11)<< s.front().Vardas << setw(13) << s.front().Pavarde << setw(16) << right << setprecision(2) << fixed << s.front().M << endl;
             s.pop_front();
