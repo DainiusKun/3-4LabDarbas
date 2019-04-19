@@ -4,7 +4,7 @@
 Programa naudoja nuskaitymą iš failų ir duomenų įrašymą ranka.
 * Programa paklausia ar norite nuskaityti duomenis iš failo ar įrašyti ranka.
 #### Programa nuskaitanti iš failo:
-1. Programa paklausia kiek studentų yra grupėje ir taip sugeneruoja duomenis.
+1. Programa paklausia kiek studentų yra grupėje ir taip nustato iš kurio failo apdoroja duomenis.
 2. Programa paklausia ar norite, kad duomenys būtų įrašomi į failus ar į ekraną.
 >Jeigu į failus, rezultatai, kurie >=5 įrašomi į „protingi.txt“, kurie <5 — į „vargsai.txt“.
 >Jeigu į ekrana, visi rezutatai pateikiami ekrane surikiuoti abėcėlės tvarka.
